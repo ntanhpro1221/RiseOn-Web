@@ -61,6 +61,22 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // Gallery lightbox
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox && typeof lightbox.showModal === "function") {
+    const lbImg = lightbox.querySelector("img");
+    const lbText = lightbox.querySelector("p");
+    document.querySelectorAll(".shot button").forEach((btn) => btn.addEventListener("click", () => {
+      const img = btn.querySelector("img");
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbText.textContent = btn.closest("figure").querySelector("figcaption").textContent;
+      lightbox.showModal();
+    }));
+    lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
+    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
+  }
+
   // ---------- Pixel-art fighting game demo ----------
   const canvas = document.getElementById("pixelGame");
   if (!canvas) return;
