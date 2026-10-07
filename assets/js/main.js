@@ -111,15 +111,15 @@
 
   const TEAM = [
     { img: "tiger", name: "Hổ Thiền Debug", cls: "Tank · Backend", quote: "Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.",
-      stats: [["Code", 92], ["Design", 40], ["Meme", 85], ["Bình tĩnh", 99]], skill: "Thiền định: giảm 50% hoảng loạn khi build lỗi" },
+      stats: [["Code", 92], ["Design", 40], ["Meme", 85], ["Bình tĩnh", 99]], skills: [["🐯", "Gầm hổ", 8, "Sóng âm hất văng mọi kẻ xung quanh"], ["🧘", "Thiền định", 14, "3s giảm 70% sát thương, không bị đẩy lùi, hồi 20 máu"]] },
     { img: "cat", name: "Mèo Review", cls: "Support · QA", quote: "Code đẹp quá, cho em xin approve nha.",
-      stats: [["Code", 70], ["Design", 75], ["Meme", 95], ["Dễ thương", 100]], skill: "Ánh mắt long lanh: pull request được merge ngay" },
+      stats: [["Code", 70], ["Design", 75], ["Meme", 95], ["Dễ thương", 100]], skills: [["🐾", "Vồ mồi", 5, "Lao vút theo hướng ngắm, vồ trúng gây 16 sát thương"], ["🐈", "Chín mạng", 22, "Trong 6s, nếu bị hạ sẽ hồi sinh ở chỗ an toàn với 40 máu"]] },
     { img: "fruit", name: "Hiệp sĩ Trái cây", cls: "Mage · Game Design", quote: "Ý tưởng tươi mới mỗi ngày — theo nghĩa đen.",
-      stats: [["Code", 55], ["Design", 96], ["Meme", 80], ["Vitamin", 100]], skill: "Brainstorm: triệu hồi 10 ý tưởng game mỗi phút" },
+      stats: [["Code", 55], ["Design", 96], ["Meme", 80], ["Vitamin", 100]], skills: [["🍉", "Mưa trái cây", 10, "Trái cây rơi ào ào xuống quanh điểm ngắm"], ["🥤", "Sinh tố", 15, "Hồi 35 máu và nạp đầy nhiên liệu bay"]] },
     { img: "trungthu", name: "Siêu sao Trung Thu", cls: "Fighter · Gameplay", quote: "SUGOI I-KOI! Sự kiện nào cũng phải có nhân vật chính.",
-      stats: [["Code", 80], ["Design", 65], ["Meme", 90], ["Thể lực", 97]], skill: "Tỉa hoa quả: biến mọi asset thành tác phẩm" },
+      stats: [["Code", 80], ["Design", 65], ["Meme", 90], ["Thể lực", 97]], skills: [["⭐", "Đèn ông sao", 6, "Ném ngôi sao bay ra rồi quay về, trúng được 2 lần"], ["🥮", "Bánh nướng", 9, "Lao thẳng xuống, tạo chấn động khi chạm đất"]] },
     { img: "studio", name: "Tân binh Studio", cls: "Rookie · Unity Dev", quote: "Hôm nay học Unity, mai ship game lên store!",
-      stats: [["Code", 75], ["Design", 70], ["Meme", 88], ["Nhiệt huyết", 100]], skill: "Level up: XP nhân đôi khi có mentor bên cạnh" },
+      stats: [["Code", 75], ["Design", 70], ["Meme", 88], ["Nhiệt huyết", 100]], skills: [["⏪", "Ctrl+Z", 10, "Quay ngược về vị trí 2 giây trước"], ["🛠️", "Spawn Prefab", 16, "Đặt tháp súng tự bắn kẻ địch gần nhất trong 6s"]] },
   ];
   const slots = [...document.querySelectorAll(".roster .slot")];
   const stageChar = document.getElementById("stageChar");
@@ -145,7 +145,9 @@
       $("pClass").textContent = m.cls;
       $("pName").textContent = m.name;
       $("pQuote").textContent = `“${m.quote}”`;
-      $("pSkill").textContent = m.skill;
+      // the character's real skill set in RiseOn Arena (+ the grenade everyone has)
+      $("pSkills").innerHTML = [...m.skills, ["💣", "Lựu đạn", 5, "Mọi nhân vật đều có, không cần nhặt"]]
+        .map(([icon, name, cd, desc]) => `<li><span class="sk-ic">${icon}</span><span><b>${name}</b><small>hồi ${cd}s</small><em>${desc}</em></span></li>`).join("");
       statsEl.innerHTML = m.stats.map(([k, v]) =>
         `<li><span>${k}</span><div class="bar"><i data-v="${v}"></i></div><b>${v}</b></li>`).join("");
       requestAnimationFrame(() => statsEl.querySelectorAll(".bar i").forEach((b) => { b.style.width = `${b.dataset.v}%`; }));
