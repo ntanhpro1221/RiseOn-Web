@@ -130,6 +130,8 @@
       stats: [["Code", 72], ["Design", 85], ["Meme", 90], ["Khí chất", 100]], skills: [["😏", "Mày nghĩ tao sợ?", 9, "1.5s thủ thế: chặn mọi đòn, phản lại kẻ tấn công 15 sát thương"], ["👁️", "Lườm cháy mặt", 7, "Ánh mắt tia laser xuyên thấu mọi kẻ trên đường ngắm"]] },
     { img: "tire", name: "Người Bánh Xe", cls: "Tank · DevOps", quote: "Pipeline chạy êm như lốp mới thay.",
       stats: [["Code", 84], ["Design", 50], ["Meme", 94], ["Bền bỉ", 100]], skills: [["🛞", "Lăn bánh", 6, "Cuộn tròn lăn vèo về phía trước, tông ai văng người đó"], ["🍜", "Mì ly tiếp sức", 14, "Hồi 25 máu và chạy nhanh hơn 35% trong 4s"]] },
+    { img: "co", name: "Kỳ Thủ", cls: "Support · Marketing", quote: "Cờ cắm tới đâu, đội vui tới đó!",
+      stats: [["Code", 66], ["Design", 78], ["Meme", 92], ["Nụ cười", 100]], skills: [["🚩", "Cắm cờ", 15, "Cắm cờ 6s: đứng gần cờ hồi 5 máu/giây và nhận ít hơn 30% sát thương"], ["🎌", "Phất cờ", 7, "Phất cờ quét một vòng, hất văng kẻ địch xung quanh"]] },
   ];
   const slots = [...document.querySelectorAll(".roster .slot")];
   const stageChar = document.getElementById("stageChar");

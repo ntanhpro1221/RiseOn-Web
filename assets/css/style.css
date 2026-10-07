@@ -576,7 +576,7 @@ strong { color: var(--white); font-weight: 600; }
 .play-btn { align-self: flex-start; margin-top: 22px; }
 .play-note { margin: 10px 0 0; font-size: .82rem; color: var(--muted); }
 
-.roster { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 18px; }
+.roster { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-top: 18px; }
 .slot {
   position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
   height: 150px; padding: 0 8px 12px; overflow: hidden; cursor: pointer;
@@ -744,7 +744,7 @@ strong { color: var(--white); font-weight: 600; }
   .path { grid-template-columns: 1fr 1fr; padding-top: 0; }
   .path::before, .walker { display: none; }
   .step .step-no { background: var(--grad); color: var(--ink); border-color: transparent; }
-  .roster { grid-template-columns: repeat(5, minmax(96px, 1fr)); overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+  .roster { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(96px, 1fr); overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
   .slot { scroll-snap-align: start; }
   .hero-visual { max-width: 400px; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
