@@ -120,6 +120,16 @@
       stats: [["Code", 80], ["Design", 65], ["Meme", 90], ["Thể lực", 97]], skills: [["⭐", "Đèn ông sao", 6, "Ném ngôi sao bay ra rồi quay về, trúng được 2 lần"], ["🥮", "Bánh nướng", 9, "Lao thẳng xuống, tạo chấn động khi chạm đất"]] },
     { img: "studio", name: "Tân binh Studio", cls: "Rookie · Unity Dev", quote: "Hôm nay học Unity, mai ship game lên store!",
       stats: [["Code", 75], ["Design", 70], ["Meme", 88], ["Nhiệt huyết", 100]], skills: [["⏪", "Ctrl+Z", 10, "Quay ngược về vị trí 2 giây trước"], ["🛠️", "Spawn Prefab", 16, "Đặt tháp súng tự bắn kẻ địch gần nhất trong 6s"]] },
+    { img: "xoan", name: "Xoăn Lễ Hội", cls: "Bard · Community", quote: "Đi đâu cũng mang theo không khí lễ hội.",
+      stats: [["Code", 68], ["Design", 82], ["Meme", 93], ["Năng lượng", 100]], skills: [["🎉", "Pháo giấy", 7, "Ném quả pháo giấy, nổ tung khi chạm người hoặc sàn"], ["🎈", "Chùm bóng bay", 13, "4s lơ lửng nhẹ tênh: rơi chậm, bay không tốn nhiên liệu"]] },
+    { img: "courage", name: "Chó Nhát Gan", cls: "Scout · QA Tester", quote: "Sợ thì sợ, nhưng bug thì vẫn phải tìm cho ra!",
+      stats: [["Code", 60], ["Design", 58], ["Meme", 99], ["Hét to", 100]], skills: [["😱", "Hét thất thanh", 9, "Tiếng hét kinh hoàng thổi bay mọi kẻ ở gần"], ["💨", "Chạy mất dép", 12, "3s chạy nhanh gấp rưỡi, nhảy cao hơn, nhận ít hơn 40% sát thương"]] },
+    { img: "soi", name: "Sói Đêm Trăng", cls: "Assassin · Night Shift", quote: "Deadline đêm nay? Trăng tròn rồi, sẵn sàng.",
+      stats: [["Code", 88], ["Design", 60], ["Meme", 82], ["Thức khuya", 100]], skills: [["🐺", "Cào xé", 4.5, "Lướt tới, cào một nhát vòng cung trúng mọi kẻ phía trước"], ["🌕", "Tru trăng", 16, "6s cuồng hóa: đấm và Cào xé mạnh hơn 60%, hút 40% sát thương thành máu"]] },
+    { img: "chidai", name: "Chị Đại", cls: "Leader · Producer", quote: "Mày nghĩ tao sợ deadline à?",
+      stats: [["Code", 72], ["Design", 85], ["Meme", 90], ["Khí chất", 100]], skills: [["😏", "Mày nghĩ tao sợ?", 9, "1.5s thủ thế: chặn mọi đòn, phản lại kẻ tấn công 15 sát thương"], ["👁️", "Lườm cháy mặt", 7, "Ánh mắt tia laser xuyên thấu mọi kẻ trên đường ngắm"]] },
+    { img: "tire", name: "Người Bánh Xe", cls: "Tank · DevOps", quote: "Pipeline chạy êm như lốp mới thay.",
+      stats: [["Code", 84], ["Design", 50], ["Meme", 94], ["Bền bỉ", 100]], skills: [["🛞", "Lăn bánh", 6, "Cuộn tròn lăn vèo về phía trước, tông ai văng người đó"], ["🍜", "Mì ly tiếp sức", 14, "Hồi 25 máu và chạy nhanh hơn 35% trong 4s"]] },
   ];
   const slots = [...document.querySelectorAll(".roster .slot")];
   const stageChar = document.getElementById("stageChar");
