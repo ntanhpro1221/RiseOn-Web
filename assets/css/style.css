@@ -27,7 +27,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 12px); }
+:root { --safe-top: env(safe-area-inset-top, 0px); }
 body {
   margin: 0;
   font-family: var(--font);
@@ -82,10 +83,13 @@ strong { color: var(--white); font-weight: 600; }
 /* ---------- Header ---------- */
 .site-header {
   position: fixed; inset: 0 0 auto 0; z-index: 50;
-  height: var(--header-h);
-  transition: background-color .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+  /* the status bar's height on top (phones that draw the page under it), so the header is never half covered */
+  height: calc(var(--header-h) + var(--safe-top)); padding-top: var(--safe-top);
+  transition: background-color .3s ease, border-color .3s ease, backdrop-filter .3s ease, transform .3s ease;
   border-bottom: 1px solid transparent;
 }
+/* tucked away completely while scrolling down, back as soon as you scroll up */
+.site-header.is-tucked { transform: translateY(calc(-100% - 2px)); }
 .site-header.is-scrolled {
   background: rgba(17,17,17,.78);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
@@ -106,7 +110,7 @@ strong { color: var(--white); font-weight: 600; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden;
-  padding: calc(var(--header-h) + 64px) 0 96px;
+  padding: calc(var(--header-h) + var(--safe-top) + 64px) 0 96px;
   min-height: min(100vh, 900px);
   display: flex; align-items: center;
 }
@@ -736,7 +740,7 @@ strong { color: var(--white); font-weight: 600; }
   .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .nav {
-    position: fixed; top: var(--header-h); left: 0; right: 0;
+    position: fixed; top: calc(var(--header-h) + var(--safe-top)); left: 0; right: 0;
     flex-direction: column; align-items: stretch; gap: 0;
     padding: 12px 16px 24px;
     background: rgba(17,17,17,.97); border-bottom: 1px solid var(--line);
@@ -749,7 +753,7 @@ strong { color: var(--white); font-weight: 600; }
   .nav-cta { margin-top: 16px; justify-content: center; }
   .site-header.menu-open { background: rgba(17,17,17,.97); }
 
-  .hero { padding-top: calc(var(--header-h) + 40px); min-height: auto; }
+  .hero { padding-top: calc(var(--header-h) + var(--safe-top) + 40px); min-height: auto; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { max-width: 360px; order: -1; }
   .about { grid-template-columns: 1fr; gap: 40px; }
@@ -836,7 +840,7 @@ strong { color: var(--white); font-weight: 600; }
   /* character select: pick first (sticky strip under the header), then see who you picked right below */
   #life .container { display: flex; flex-direction: column; }
   #life .section-head { order: 0; }
-  #life .roster { order: 1; position: sticky; top: calc(var(--header-h) + 4px); z-index: 20;
+  #life .roster { order: 1; position: sticky; top: calc(var(--header-h) + var(--safe-top) + 4px); z-index: 20; transition: top .3s ease;
     display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
     margin: 0 -20px 14px; padding: 8px 20px; background: rgba(17,17,17,.94); backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line); }
@@ -890,3 +894,8 @@ strong { color: var(--white); font-weight: 600; }
   #life .slot img { bottom: 6px; height: calc(100% - 10px); }
   #life .slot.is-active { background: var(--surface-2); border-color: var(--yellow); }
 }
+
+/* header tucked: the sticky character strip moves up into its place */
+@media (max-width: 860px) { html.header-tucked #life .roster { top: calc(var(--safe-top) + 4px); } }
+/* landscape phones with a notch: keep content clear of it now that the page may extend under it */
+body { padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }

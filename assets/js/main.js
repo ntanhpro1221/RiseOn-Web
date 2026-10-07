@@ -4,7 +4,26 @@
   const toggle = document.getElementById("navToggle");
 
   // Header background once the page scrolls
-  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 10);
+  // Header: background once the page scrolls; hidden completely while scrolling down, shown again on the way up
+  let lastY = window.scrollY;
+  // opening a #link / tapping a menu item scrolls the page by itself (smoothly): that's not "reading down"
+  let autoScrollUntil = performance.now() + 1500;
+  const autoScroll = () => { autoScrollUntil = performance.now() + 1200; };
+  window.addEventListener("hashchange", autoScroll);
+  document.addEventListener("click", (e) => { if (e.target.closest && e.target.closest('a[href^="#"]')) autoScroll(); });
+  const onScroll = () => {
+    const y = window.scrollY;
+    header.classList.toggle("is-scrolled", y > 10);
+    let tuck = header.classList.contains("is-tucked");
+    if (y < 80 || header.classList.contains("menu-open")) tuck = false;
+    else if (performance.now() < autoScrollUntil) tuck = false; // the page itself is scrolling to a #section: keep it
+    else if (y > lastY + 8) tuck = true;
+    else if (y < lastY - 8) tuck = false;
+    else return; // small jitter: keep the current state and the reference point
+    header.classList.toggle("is-tucked", tuck);
+    document.documentElement.classList.toggle("header-tucked", tuck);
+    lastY = y;
+  };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -20,22 +39,26 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 
   // Reveal on scroll
-  const revealEls = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        io.unobserve(entry.target);
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    revealEls.forEach((el, i) => {
-      el.style.transitionDelay = `${(i % 5) * 60}ms`;
-      io.observe(el);
+  // Measured directly on load, scroll and resize instead of trusting IntersectionObserver alone: some mobile
+  // browsers mis-report it after opening a #link (e.g. /#life), which left half-visible blocks stuck invisible.
+  // Anything already scrolled past (above the screen) is shown too, so scrolling back up never finds a blank.
+  let pending = Array.from(document.querySelectorAll(".reveal"));
+  pending.forEach((el, i) => { el.style.transitionDelay = `${(i % 5) * 60}ms`; });
+  const show = (el) => el.classList.add("is-visible");
+  const sweep = () => {
+    const h = window.innerHeight || document.documentElement.clientHeight;
+    pending = pending.filter((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < h - 24 || r.bottom <= 0) { show(el); return false; } // on screen (even a sliver) or above it
+      return true;
     });
-  } else {
-    revealEls.forEach((el) => el.classList.add("is-visible"));
-  }
+    if (!pending.length) ["scroll", "resize", "hashchange", "load", "pageshow"].forEach((ev) => window.removeEventListener(ev, onMove));
+  };
+  let sweepQueued = false;
+  const onMove = () => { if (!sweepQueued) { sweepQueued = true; requestAnimationFrame(() => { sweepQueued = false; sweep(); }); } };
+  ["scroll", "resize", "hashchange", "load", "pageshow"].forEach((ev) => window.addEventListener(ev, onMove, { passive: true }));
+  sweep();
+  setTimeout(sweep, 400); // after the browser's own jump to the #section
 
   // Highlight the nav link of the section in view
   const links = [...nav.querySelectorAll('a[href^="#"]:not(.btn)')];
