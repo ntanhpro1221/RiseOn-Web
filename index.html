@@ -27,12 +27,12 @@
         <img src="assets/img/logo.svg" alt="RiseOn Game Studio" width="158" height="35">
       </a>
       <nav class="nav" id="nav" aria-label="Điều hướng chính">
+        <a href="#life">Nhân vật</a>
         <a href="#games">Game</a>
         <a href="#about">Giới thiệu</a>
         <a href="#courses">Khóa học</a>
         <a href="#path">Lộ trình</a>
         <a href="#students">Học viên</a>
-        <a href="#life">Đời sống</a>
         <a href="#contact">Liên hệ</a>
         <a class="btn btn-primary btn-sm nav-cta" href="#contact">Đăng ký tư vấn</a>
       </nav>
@@ -101,6 +101,71 @@
         <span>Unity</span><img src="assets/img/chars/fruit-cherry.webp" alt=""><span>C#</span><img src="assets/img/chars/fruit-pear.webp" alt=""><span>Game Design</span><img src="assets/img/chars/fruit-orange.webp" alt=""><span>Pixel Art</span><img src="assets/img/chars/fruit-watermelon.webp" alt=""><span>2D Animation</span><img src="assets/img/chars/fruit-cherry.webp" alt=""><span>Level Design</span><img src="assets/img/chars/fruit-pear.webp" alt=""><span>Gameplay</span><img src="assets/img/chars/fruit-orange.webp" alt=""><span>Puzzle</span><img src="assets/img/chars/fruit-watermelon.webp" alt="">
       </div>
     </div>
+
+    <!-- LIFE AT RISEON: character select -->
+    <section class="section section-alt" id="life">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow reveal">Life at RiseOn</p>
+          <h2 class="reveal">Chọn <span class="grad-text">nhân vật</span> của bạn</h2>
+          <p class="section-sub reveal">Đội ngũ RiseOn — mỗi người một class, một skill riêng. Ảnh do team tự chế, không chịu trách nhiệm về độ nghiêm túc.</p>
+        </div>
+        <div class="select reveal">
+          <div class="stage">
+            <div class="stage-floor"></div>
+            <img class="stage-char" id="stageChar" src="assets/img/team/tiger.webp" alt="Hổ Thiền Debug">
+            <span class="stage-p1">P1</span>
+          </div>
+          <div class="profile" aria-live="polite">
+            <p class="profile-class" id="pClass">Tank · Backend</p>
+            <h3 id="pName">Hổ Thiền Debug</h3>
+            <p class="profile-quote" id="pQuote">“Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.”</p>
+            <ul class="stats" id="pStats"></ul>
+            <div class="skill"><span>Bộ kỹ năng trong RiseOn Arena</span><ul class="skill-set" id="pSkills"></ul></div>
+            <a class="btn btn-primary play-btn" id="playBtn" href="#" target="_blank" rel="noopener">
+              Vào chơi với nhân vật này
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <p class="play-note">RiseOn Arena — Stick Fight nhiều người, chơi online với bất kỳ ai. Ở studio sẽ tự kết nối qua mạng nội bộ cho nhanh.</p>
+          </div>
+        </div>
+        <div class="roster reveal" role="tablist" aria-label="Chọn thành viên">
+          <button type="button" class="slot is-active" role="tab" aria-selected="true" data-i="0" tabindex="0">
+            <img src="assets/img/team/tiger.webp" alt="" loading="lazy"><span>Hổ Thiền Debug</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="1" tabindex="-1">
+            <img src="assets/img/team/cat.webp" alt="" loading="lazy"><span>Mèo Review</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="2" tabindex="-1">
+            <img src="assets/img/team/fruit.webp" alt="" loading="lazy"><span>Hiệp sĩ Trái cây</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="3" tabindex="-1">
+            <img src="assets/img/team/trungthu.webp" alt="" loading="lazy"><span>Siêu sao Trung Thu</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="4" tabindex="-1">
+            <img src="assets/img/team/studio.webp" alt="" loading="lazy"><span>Tân binh Studio</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="5" tabindex="-1">
+            <img src="assets/img/team/xoan.webp" alt="" loading="lazy"><span>Xoăn Lễ Hội</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="6" tabindex="-1">
+            <img src="assets/img/team/courage.webp" alt="" loading="lazy"><span>Chó Nhát Gan</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="7" tabindex="-1">
+            <img src="assets/img/team/soi.webp" alt="" loading="lazy"><span>Sói Đêm Trăng</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="8" tabindex="-1">
+            <img src="assets/img/team/chidai.webp" alt="" loading="lazy"><span>Chị Đại</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="9" tabindex="-1">
+            <img src="assets/img/team/tire.webp" alt="" loading="lazy"><span>Người Bánh Xe</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="10" tabindex="-1">
+            <img src="assets/img/team/co.webp" alt="" loading="lazy"><span>Kỳ Thủ</span>
+          </button>
+        </div>
+      </div>
+    </section>
 
     <!-- GAMES -->
     <section class="section section-games" id="games">
@@ -399,71 +464,6 @@
             <blockquote>“Mình là sinh viên năm nhất, đến nay mình vừa tốt nghiệp khóa Lập trình Game Unity nâng cao…”</blockquote>
             <figcaption><span class="avatar">HT</span><span><b>Lưu Huy Thành</b><small>Học viên Unity nâng cao</small></span></figcaption>
           </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIFE AT RISEON: character select -->
-    <section class="section section-alt" id="life">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow reveal">Life at RiseOn</p>
-          <h2 class="reveal">Chọn <span class="grad-text">nhân vật</span> của bạn</h2>
-          <p class="section-sub reveal">Đội ngũ RiseOn — mỗi người một class, một skill riêng. Ảnh do team tự chế, không chịu trách nhiệm về độ nghiêm túc.</p>
-        </div>
-        <div class="select reveal">
-          <div class="stage">
-            <div class="stage-floor"></div>
-            <img class="stage-char" id="stageChar" src="assets/img/team/tiger.webp" alt="Hổ Thiền Debug">
-            <span class="stage-p1">P1</span>
-          </div>
-          <div class="profile" aria-live="polite">
-            <p class="profile-class" id="pClass">Tank · Backend</p>
-            <h3 id="pName">Hổ Thiền Debug</h3>
-            <p class="profile-quote" id="pQuote">“Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.”</p>
-            <ul class="stats" id="pStats"></ul>
-            <div class="skill"><span>Bộ kỹ năng trong RiseOn Arena</span><ul class="skill-set" id="pSkills"></ul></div>
-            <a class="btn btn-primary play-btn" id="playBtn" href="#" target="_blank" rel="noopener">
-              Vào chơi với nhân vật này
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-            <p class="play-note">RiseOn Arena — Stick Fight nhiều người, chơi online với bất kỳ ai. Ở studio sẽ tự kết nối qua mạng nội bộ cho nhanh.</p>
-          </div>
-        </div>
-        <div class="roster reveal" role="tablist" aria-label="Chọn thành viên">
-          <button type="button" class="slot is-active" role="tab" aria-selected="true" data-i="0" tabindex="0">
-            <img src="assets/img/team/tiger.webp" alt="" loading="lazy"><span>Hổ Thiền Debug</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="1" tabindex="-1">
-            <img src="assets/img/team/cat.webp" alt="" loading="lazy"><span>Mèo Review</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="2" tabindex="-1">
-            <img src="assets/img/team/fruit.webp" alt="" loading="lazy"><span>Hiệp sĩ Trái cây</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="3" tabindex="-1">
-            <img src="assets/img/team/trungthu.webp" alt="" loading="lazy"><span>Siêu sao Trung Thu</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="4" tabindex="-1">
-            <img src="assets/img/team/studio.webp" alt="" loading="lazy"><span>Tân binh Studio</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="5" tabindex="-1">
-            <img src="assets/img/team/xoan.webp" alt="" loading="lazy"><span>Xoăn Lễ Hội</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="6" tabindex="-1">
-            <img src="assets/img/team/courage.webp" alt="" loading="lazy"><span>Chó Nhát Gan</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="7" tabindex="-1">
-            <img src="assets/img/team/soi.webp" alt="" loading="lazy"><span>Sói Đêm Trăng</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="8" tabindex="-1">
-            <img src="assets/img/team/chidai.webp" alt="" loading="lazy"><span>Chị Đại</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="9" tabindex="-1">
-            <img src="assets/img/team/tire.webp" alt="" loading="lazy"><span>Người Bánh Xe</span>
-          </button>
-          <button type="button" class="slot" role="tab" aria-selected="false" data-i="10" tabindex="-1">
-            <img src="assets/img/team/co.webp" alt="" loading="lazy"><span>Kỳ Thủ</span>
-          </button>
         </div>
       </div>
     </section>
