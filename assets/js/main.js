@@ -106,7 +106,12 @@
   const updatePlay = () => { if (playBtn) playBtn.href = `${gameUrl}?char=${playChar}`; };
   fetch(`play.json?t=${Date.now()}`, { cache: "no-store" })
     .then((r) => (r.ok ? r.json() : null))
-    .then((c) => { if (c && c.url) { gameUrl = c.url; updatePlay(); } })
+    .then((c) => {
+      if (c && c.url) { gameUrl = c.url; updatePlay(); }
+      // Admin: the Mac's PIN-protected panel to switch the game server on/off (public link, LAN as fallback)
+      const admin = document.getElementById("adminLink");
+      if (admin && c && (c.admin || c.adminLan)) admin.href = c.admin || c.adminLan;
+    })
     .catch(() => {});
 
   const TEAM = [

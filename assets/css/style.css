@@ -787,3 +787,7 @@ strong { color: var(--white); font-weight: 600; }
   .footer-inner { grid-template-columns: 1fr; }
   .footer-brand { grid-column: auto; }
 }
+
+.footer-links { display: inline-flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.admin-link { padding: 6px 12px; border: 1px solid var(--line, rgba(255,255,255,.12)); border-radius: 999px; }
+.admin-link:hover { border-color: var(--amber); }
