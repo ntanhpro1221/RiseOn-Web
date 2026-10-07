@@ -151,6 +151,8 @@
       stats: [["Code", 84], ["Design", 50], ["Meme", 94], ["Bền bỉ", 100]], skills: [["🛞", "Lăn bánh", 6, "Cuộn tròn lăn vèo về phía trước, tông ai văng người đó"], ["🍜", "Mì ly tiếp sức", 14, "Hồi 25 máu và chạy nhanh hơn 35% trong 4s"]] },
     { img: "co", name: "Kỳ Thủ", cls: "Support · Marketing", quote: "Cờ cắm tới đâu, đội vui tới đó!",
       stats: [["Code", 66], ["Design", 78], ["Meme", 92], ["Nụ cười", 100]], skills: [["🚩", "Cắm cờ", 15, "Cắm cờ 6s: đứng gần cờ hồi 5 máu/giây và nhận ít hơn 30% sát thương"], ["🎌", "Phất cờ", 7, "Phất cờ quét một vòng, hất văng kẻ địch xung quanh"]] },
+    { img: "dmc", name: "Thợ Săn Quỷ", cls: "Slayer · Gameplay", quote: "Quỷ khóc, thần sầu — bug cũng phải chạy.",
+      stats: [["Code", 86], ["Design", 62], ["Meme", 91], ["Ngầu", 100]], skills: [["🗡️", "Stinger", 5.5, "Lao kiếm đâm thẳng theo hướng ngắm, xuyên qua và hất văng mọi kẻ trên đường"], ["🔫", "Ebony & Ivory", 7, "Rút song súng bắn một chùm 5 viên hình quạt"]] },
   ];
   const slots = [...document.querySelectorAll(".roster .slot")];
   const stageChar = document.getElementById("stageChar");
