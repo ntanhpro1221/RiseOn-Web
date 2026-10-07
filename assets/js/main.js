@@ -6,17 +6,11 @@
   // Header background once the page scrolls
   // Header: background once the page scrolls; hidden completely while scrolling down, shown again on the way up
   let lastY = window.scrollY;
-  // opening a #link / tapping a menu item scrolls the page by itself (smoothly): that's not "reading down"
-  let autoScrollUntil = performance.now() + 1500;
-  const autoScroll = () => { autoScrollUntil = performance.now() + 1200; };
-  window.addEventListener("hashchange", autoScroll);
-  document.addEventListener("click", (e) => { if (e.target.closest && e.target.closest('a[href^="#"]')) autoScroll(); });
   const onScroll = () => {
     const y = window.scrollY;
     header.classList.toggle("is-scrolled", y > 10);
     let tuck = header.classList.contains("is-tucked");
     if (y < 80 || header.classList.contains("menu-open")) tuck = false;
-    else if (performance.now() < autoScrollUntil) tuck = false; // the page itself is scrolling to a #section: keep it
     else if (y > lastY + 8) tuck = true;
     else if (y < lastY - 8) tuck = false;
     else return; // small jitter: keep the current state and the reference point
