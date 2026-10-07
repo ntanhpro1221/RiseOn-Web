@@ -442,23 +442,36 @@ strong { color: var(--white); font-weight: 600; }
 .course-link:hover svg { transform: translateX(4px); }
 
 /* Path */
-.path { list-style: none; padding: 96px 0 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; }
+/* Vertical learning path: scroll down and the bun walks down the line, lighting each step it reaches */
+.path {
+  --gutter: 104px;
+  list-style: none; margin: 0 auto; padding: 0 0 0 var(--gutter); max-width: 760px;
+  display: grid; grid-template-columns: 1fr; gap: 44px; position: relative;
+}
 .path::before {
-  content: ""; position: absolute; top: calc(96px + 31px); left: 32px; right: 32px; height: 2px;
-  background: linear-gradient(90deg, var(--yellow), var(--red)); opacity: .35;
+  content: ""; position: absolute; left: calc(var(--gutter) + 31px); top: 32px; bottom: 32px; width: 2px;
+  background: linear-gradient(180deg, var(--yellow), var(--red)); opacity: .35;
+}
+.path::after { /* the part of the line already walked */
+  content: ""; position: absolute; left: calc(var(--gutter) + 31px); top: 32px; width: 2px;
+  height: calc(var(--walked, 0) * (100% - 64px)); background: var(--grad); border-radius: 2px;
 }
 .walker {
-  --p: 0;
-  position: absolute; top: 0; left: calc(var(--p) * (100% - (100% - 60px) / 4));
-  width: 25%; height: 96px; display: flex; justify-content: flex-start; pointer-events: none;
+  position: absolute; top: 0; left: 0; width: 92px; height: 92px; pointer-events: none;
+  transform: translateY(var(--y, 0px)); will-change: transform;
 }
-.walker img { position: absolute; left: -8px; bottom: 0; height: 92px; width: auto; transition: opacity .3s ease, transform .3s ease; }
-.walker .walk-a { animation: waddle .5s ease-in-out infinite alternate; transform-origin: bottom center; }
+.walker img { position: absolute; left: 0; bottom: 0; height: 92px; width: auto; transition: opacity .3s ease, transform .3s ease; }
+.walker .walk-a { transform-origin: bottom center; }
+.walker.is-walking .walk-a { animation: waddle .32s ease-in-out infinite alternate; } /* only bobs while it's actually moving */
 .walker .walk-b { opacity: 0; transform: scale(.6); transform-origin: bottom left; }
 .walker.is-done .walk-a { opacity: 0; }
 .walker.is-done .walk-b { opacity: 1; transform: none; }
 @keyframes waddle { from { transform: rotate(-5deg); } to { transform: rotate(5deg) translateY(-4px); } }
-.step { position: relative; }
+.step { position: relative; display: grid; grid-template-columns: 64px 1fr; column-gap: 24px; align-items: start; }
+.step h3, .step p { grid-column: 2; }
+.step .step-no { grid-row: span 2; margin-bottom: 0; }
+.step.is-reached h3 { color: var(--text); }
+.step:not(.is-reached) p { opacity: .75; }
 .step-no {
   position: relative; display: grid; place-items: center;
   width: 64px; height: 64px; border-radius: 18px; margin-bottom: 22px;
@@ -741,9 +754,8 @@ strong { color: var(--white); font-weight: 600; }
   .hero-visual { max-width: 360px; order: -1; }
   .about { grid-template-columns: 1fr; gap: 40px; }
   .showcase { grid-template-columns: 1fr; padding: 20px; gap: 28px; }
-  .path { grid-template-columns: 1fr 1fr; padding-top: 0; }
-  .path::before, .walker { display: none; }
-  .step .step-no { background: var(--grad); color: var(--ink); border-color: transparent; }
+  .path { --gutter: 76px; gap: 36px; }
+  .walker, .walker img { width: 64px; height: 64px; }
   .roster { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(96px, 1fr); overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
   .slot { scroll-snap-align: start; }
   .hero-visual { max-width: 400px; }
@@ -775,7 +787,11 @@ strong { color: var(--white); font-weight: 600; }
   .stats li { grid-template-columns: 80px 1fr 32px; }
   .peek { left: 24px; width: 100px; top: -72px; }
   .locations { grid-template-columns: 1fr; }
-  .path { grid-template-columns: 1fr; }
+  .path { --gutter: 58px; }
+  .walker, .walker img { width: 50px; height: 50px; }
+  .step { grid-template-columns: 52px 1fr; column-gap: 16px; }
+  .step-no { width: 52px; height: 52px; border-radius: 14px; }
+  .path::before, .path::after { left: calc(var(--gutter) + 25px); top: 26px; }
   .hero-facts { gap: 20px; }
   .hero-facts b { font-size: 1.6rem; }
   .hero-actions .btn { flex: 1 1 100%; justify-content: center; }

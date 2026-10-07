@@ -79,18 +79,30 @@
     }, { passive: true });
   }
 
-  // Learning path: the bun walks the steps as you scroll, then celebrates
+  // Learning path: the bun walks down the line as you scroll (staying near the middle of the screen),
+  // lights up each step it reaches, and turns into the chef at the end
   const path = document.getElementById("path");
   if (path) {
     const walker = path.querySelector(".walker");
     const steps = [...path.querySelectorAll(".step")];
+    let stopT = 0, lastY = -1;
     const update = () => {
       const r = path.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.72)));
-      walker.style.setProperty("--p", p.toFixed(3));
+      const wh = walker.offsetHeight || 92;
+      const first = steps[0].offsetTop, last = steps[steps.length - 1].offsetTop;
+      // walker top follows the viewport's 55% line, clamped between the first and the last step
+      const y = Math.min(last, Math.max(first, window.innerHeight * 0.55 - r.top - wh / 2));
+      walker.style.setProperty("--y", `${y.toFixed(1)}px`);
+      const p = (y - first) / Math.max(1, last - first);
+      path.style.setProperty("--walked", p.toFixed(3));
       walker.classList.toggle("is-done", p >= 0.999);
-      steps.forEach((s, i) => s.classList.toggle("is-reached", p >= i / (steps.length - 1) - 0.02));
+      steps.forEach((s) => s.classList.toggle("is-reached", y >= s.offsetTop - 4));
+      if (Math.abs(y - lastY) > 0.5 && lastY >= 0 && p < 0.999) {
+        walker.classList.add("is-walking");
+        clearTimeout(stopT);
+        stopT = setTimeout(() => walker.classList.remove("is-walking"), 160);
+      }
+      lastY = y;
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
