@@ -48,6 +48,9 @@
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach((s) => spy.observe(s));
+    // back in the hero (above every tracked section): nothing is active
+    const clearTop = () => { if (sections[0] && window.scrollY + window.innerHeight * 0.5 < sections[0].offsetTop) links.forEach((a) => a.classList.remove("is-active")); };
+    window.addEventListener("scroll", clearTop, { passive: true }); clearTop();
   }
 
   // Course filter

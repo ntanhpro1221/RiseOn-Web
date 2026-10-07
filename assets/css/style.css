@@ -811,8 +811,8 @@ strong { color: var(--white); font-weight: 600; }
 .nav-admin { font-size: .85rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(249,222,11,.35); white-space: nowrap; }
 .nav-admin:hover { border-color: var(--amber); }
 
-/* =================== phones: compact, swipe-first layout =================== */
-@media (max-width: 760px) {
+/* =================== phones & small tablets: compact, swipe-first layout =================== */
+@media (max-width: 860px) {
   .section { padding: 56px 0; }
   .section-head { margin-bottom: 22px; }
   .section-head-gap { margin-top: 48px; }
@@ -857,4 +857,36 @@ strong { color: var(--white); font-weight: 600; }
   #life .skill-set em { font-size: .8rem; }
   #life .play-btn { align-self: stretch; justify-content: center; margin-top: 16px; }
   #life .play-note { font-size: .76rem; }
+}
+
+/* ===== review fixes ===== */
+.nav a { white-space: nowrap; }
+@media (min-width: 861px) and (max-width: 1180px) { .nav { gap: 16px; font-size: .88rem; } .nav-admin { padding: 5px 9px; } }
+@media (max-width: 860px) {
+  .container.features { width: auto; max-width: none; margin-left: -20px; margin-right: -20px; }
+  /* hero: words first, artwork smaller underneath */
+  .hero-visual { order: 2; max-width: 280px; margin: 8px auto 0; }
+  /* comfortable tap targets */
+  .course-link, .footer-col a, .footer-bottom a, .world a { display: inline-flex; align-items: center; min-height: 40px; }
+  #life .slot span { font-size: .7rem; }
+}
+/* phones held sideways: slimmer sticky character strip */
+@media (max-height: 500px) and (max-width: 860px) {
+  #life .roster { padding: 4px 20px; }
+  #life .slot { flex-basis: 64px; height: 60px; }
+  #life .slot img { height: 44px; bottom: 14px; }
+  #life .slot span { display: none; }
+}
+
+/* roster cards: the picture sits above the name band and never covers it */
+.slot img { bottom: 40px; height: calc(100% - 48px); max-width: 112%; }
+.slot.is-active { background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface-2) calc(100% - 36px), transparent calc(100% - 36px)), var(--grad); }
+.slot span { line-height: 1.2; }
+@media (max-width: 860px) {
+  #life .slot img { bottom: 22px; height: calc(100% - 26px); }
+  #life .slot.is-active { background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface-2) calc(100% - 22px), transparent calc(100% - 22px)), var(--grad); }
+}
+@media (max-height: 500px) and (max-width: 860px) {
+  #life .slot img { bottom: 6px; height: calc(100% - 10px); }
+  #life .slot.is-active { background: var(--surface-2); border-color: var(--yellow); }
 }
