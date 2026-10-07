@@ -56,25 +56,98 @@
   filters.forEach((btn) => btn.addEventListener("click", () => {
     filters.forEach((b) => { b.classList.toggle("is-active", b === btn); b.setAttribute("aria-selected", String(b === btn)); });
     const f = btn.dataset.filter;
-    courses.forEach((c) => c.classList.toggle("is-hidden", f !== "all" && c.dataset.cat !== f));
+    courses.forEach((c) => {
+      const hide = f !== "all" && c.dataset.cat !== f;
+      (c.closest(".course-wrap") || c).classList.toggle("is-hidden", hide);
+    });
   }));
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Gallery lightbox
-  const lightbox = document.getElementById("lightbox");
-  if (lightbox && typeof lightbox.showModal === "function") {
-    const lbImg = lightbox.querySelector("img");
-    const lbText = lightbox.querySelector("p");
-    document.querySelectorAll(".shot button").forEach((btn) => btn.addEventListener("click", () => {
-      const img = btn.querySelector("img");
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lbText.textContent = btn.closest("figure").querySelector("figcaption").textContent;
-      lightbox.showModal();
-    }));
-    lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
-    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Hero parallax: characters drift with the pointer at different depths
+  const heroVisual = document.getElementById("heroVisual");
+  if (heroVisual && !reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+    let raf = 0;
+    window.addEventListener("pointermove", (e) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        heroVisual.style.setProperty("--mx", ((e.clientX / window.innerWidth) * 2 - 1).toFixed(3));
+        heroVisual.style.setProperty("--my", ((e.clientY / window.innerHeight) * 2 - 1).toFixed(3));
+      });
+    }, { passive: true });
+  }
+
+  // Learning path: the bun walks the steps as you scroll, then celebrates
+  const path = document.getElementById("path");
+  if (path) {
+    const walker = path.querySelector(".walker");
+    const steps = [...path.querySelectorAll(".step")];
+    const update = () => {
+      const r = path.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.72)));
+      walker.style.setProperty("--p", p.toFixed(3));
+      walker.classList.toggle("is-done", p >= 0.999);
+      steps.forEach((s, i) => s.classList.toggle("is-reached", p >= i / (steps.length - 1) - 0.02));
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
+
+  // Character select
+  const TEAM = [
+    { img: "tiger", name: "Hổ Thiền Debug", cls: "Tank · Backend", quote: "Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.",
+      stats: [["Code", 92], ["Design", 40], ["Meme", 85], ["Bình tĩnh", 99]], skill: "Thiền định: giảm 50% hoảng loạn khi build lỗi" },
+    { img: "cat", name: "Mèo Review", cls: "Support · QA", quote: "Code đẹp quá, cho em xin approve nha.",
+      stats: [["Code", 70], ["Design", 75], ["Meme", 95], ["Dễ thương", 100]], skill: "Ánh mắt long lanh: pull request được merge ngay" },
+    { img: "fruit", name: "Hiệp sĩ Trái cây", cls: "Mage · Game Design", quote: "Ý tưởng tươi mới mỗi ngày — theo nghĩa đen.",
+      stats: [["Code", 55], ["Design", 96], ["Meme", 80], ["Vitamin", 100]], skill: "Brainstorm: triệu hồi 10 ý tưởng game mỗi phút" },
+    { img: "trungthu", name: "Siêu sao Trung Thu", cls: "Fighter · Gameplay", quote: "SUGOI I-KOI! Sự kiện nào cũng phải có nhân vật chính.",
+      stats: [["Code", 80], ["Design", 65], ["Meme", 90], ["Thể lực", 97]], skill: "Tỉa hoa quả: biến mọi asset thành tác phẩm" },
+    { img: "studio", name: "Tân binh Studio", cls: "Rookie · Unity Dev", quote: "Hôm nay học Unity, mai ship game lên store!",
+      stats: [["Code", 75], ["Design", 70], ["Meme", 88], ["Nhiệt huyết", 100]], skill: "Level up: XP nhân đôi khi có mentor bên cạnh" },
+  ];
+  const slots = [...document.querySelectorAll(".roster .slot")];
+  const stageChar = document.getElementById("stageChar");
+  if (slots.length && stageChar) {
+    const $ = (id) => document.getElementById(id);
+    const statsEl = $("pStats");
+    const select = (i, focus) => {
+      const m = TEAM[i];
+      slots.forEach((s, n) => {
+        const on = n === i;
+        s.classList.toggle("is-active", on);
+        s.setAttribute("aria-selected", String(on));
+        s.tabIndex = on ? 0 : -1;
+      });
+      if (focus) slots[i].focus();
+      stageChar.src = `assets/img/team/${m.img}.webp`;
+      stageChar.alt = m.name;
+      stageChar.classList.remove("is-swapping");
+      void stageChar.offsetWidth; // restart the summon animation
+      stageChar.classList.add("is-swapping");
+      $("pClass").textContent = m.cls;
+      $("pName").textContent = m.name;
+      $("pQuote").textContent = `“${m.quote}”`;
+      $("pSkill").textContent = m.skill;
+      statsEl.innerHTML = m.stats.map(([k, v]) =>
+        `<li><span>${k}</span><div class="bar"><i data-v="${v}"></i></div><b>${v}</b></li>`).join("");
+      requestAnimationFrame(() => statsEl.querySelectorAll(".bar i").forEach((b) => { b.style.width = `${b.dataset.v}%`; }));
+    };
+    slots.forEach((s, i) => {
+      s.addEventListener("click", () => select(i));
+      s.addEventListener("keydown", (e) => {
+        const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (!d) return;
+        e.preventDefault();
+        select((i + d + slots.length) % slots.length, true);
+      });
+    });
+    TEAM.forEach((m) => { new Image().src = `assets/img/team/${m.img}.webp`; });
+    select(0);
   }
 
   // ---------- Pixel-art fighting game demo ----------

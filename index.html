@@ -74,14 +74,19 @@
           </ul>
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
+        <div class="hero-visual" id="heroVisual" aria-hidden="true">
           <div class="orb"></div>
-          <img class="hero-symbol" src="assets/img/symbol.svg" alt="">
-          <div class="chip chip-1"><i class="dot dot-y"></i>Unity · C#</div>
-          <div class="chip chip-2"><i class="dot dot-o"></i>Game Design</div>
-          <div class="chip chip-3"><i class="dot dot-r"></i>2D Animation</div>
+          <div class="ring ring-1"></div>
+          <div class="ring ring-2"></div>
+          <span class="px f-cat" style="--d:.6"><img src="assets/img/chars/cat-calico.webp" alt="" width="365" height="360"></span>
+          <span class="px f-symbol" style="--d:.35"><img src="assets/img/symbol.svg" alt=""></span>
+          <span class="px f-tiles" style="--d:1.2"><img src="assets/img/chars/tiles-trio.webp" alt="" width="419" height="400"></span>
+          <span class="px f-bun" style="--d:1.6"><img src="assets/img/chars/bun-chef.webp" alt="" width="355" height="420"></span>
+          <span class="px f-cherry" style="--d:2.4"><img src="assets/img/chars/fruit-cherry.webp" alt="" width="203" height="200"></span>
+          <span class="px f-orange" style="--d:2.8"><img src="assets/img/chars/fruit-orange.webp" alt="" width="200" height="183"></span>
+          <span class="px f-melon" style="--d:2"><img src="assets/img/chars/fruit-watermelon.webp" alt="" width="196" height="185"></span>
           <div class="hud">
-            <div class="hud-row"><span>LEVEL</span><b>01 → 99</b></div>
+            <div class="hud-row"><span>PLAYER</span><b>RiseOn</b></div>
             <div class="hud-bar"><i></i></div>
             <div class="hud-row"><span>XP</span><b>Rising…</b></div>
           </div>
@@ -92,8 +97,8 @@
     <!-- MARQUEE -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Unity</span><span>C#</span><span>OOP</span><span>Game Design</span><span>Pixel Art</span><span>2D Animation</span><span>Level Design</span><span>Gameplay Programming</span>
-        <span>Unity</span><span>C#</span><span>OOP</span><span>Game Design</span><span>Pixel Art</span><span>2D Animation</span><span>Level Design</span><span>Gameplay Programming</span>
+        <span>Unity</span><img src="assets/img/chars/fruit-cherry.webp" alt=""><span>C#</span><img src="assets/img/chars/fruit-pear.webp" alt=""><span>Game Design</span><img src="assets/img/chars/fruit-orange.webp" alt=""><span>Pixel Art</span><img src="assets/img/chars/fruit-watermelon.webp" alt=""><span>2D Animation</span><img src="assets/img/chars/fruit-cherry.webp" alt=""><span>Level Design</span><img src="assets/img/chars/fruit-pear.webp" alt=""><span>Gameplay</span><img src="assets/img/chars/fruit-orange.webp" alt=""><span>Puzzle</span><img src="assets/img/chars/fruit-watermelon.webp" alt="">
+        <span>Unity</span><img src="assets/img/chars/fruit-cherry.webp" alt=""><span>C#</span><img src="assets/img/chars/fruit-pear.webp" alt=""><span>Game Design</span><img src="assets/img/chars/fruit-orange.webp" alt=""><span>Pixel Art</span><img src="assets/img/chars/fruit-watermelon.webp" alt=""><span>2D Animation</span><img src="assets/img/chars/fruit-cherry.webp" alt=""><span>Level Design</span><img src="assets/img/chars/fruit-pear.webp" alt=""><span>Gameplay</span><img src="assets/img/chars/fruit-orange.webp" alt=""><span>Puzzle</span><img src="assets/img/chars/fruit-watermelon.webp" alt="">
       </div>
     </div>
 
@@ -103,70 +108,83 @@
         <div class="section-head">
           <p class="eyebrow reveal">Game của RiseOn</p>
           <h2 class="reveal">Đã lên store, đang trên <span class="grad-text">tay người chơi</span></h2>
-          <p class="section-sub reveal">Những tựa game mobile do đội ngũ RiseOn phát triển — từ ý tưởng, gameplay đến lúc ra mắt toàn cầu.</p>
+          <p class="section-sub reveal">Mỗi tựa game là một thế giới riêng — từ ý tưởng, gameplay đến lúc ra mắt, tất cả do đội ngũ RiseOn phát triển.</p>
         </div>
-        <div class="games">
-          <article class="game reveal">
-            <div class="game-media">
-              <span class="game-badge">100K+ lượt tải</span>
-              <img class="game-shot" src="assets/img/games/bowl-shot.webp" alt="Ảnh màn chơi Where's My Bowl với chú bánh bao" width="540" height="960" loading="lazy">
-            </div>
-            <div class="game-body">
-              <div class="game-head">
-                <img class="game-icon" src="assets/img/games/bowl-icon.webp" alt="" width="64" height="64" loading="lazy">
-                <div>
-                  <h3>Where's My Bowl</h3>
-                  <small>Phát hành: ABI Global</small>
-                </div>
+        <div class="worlds">
+          <article class="world world-bowl reveal">
+            <span class="world-no" aria-hidden="true">01</span>
+            <div class="world-copy">
+              <div class="world-id">
+                <img src="assets/img/games/bowl-icon.webp" alt="" width="72" height="72" loading="lazy">
+                <div><span class="world-tag">World 01</span><h3>Where's My Bowl</h3></div>
               </div>
-              <p>Giải đố hài hước: kéo, thả, chạm và kết hợp đồ vật để đưa chú bánh bao về đúng chiếc bát. Mỗi màn là một cú twist bất ngờ.</p>
-              <ul class="meta"><li>Puzzle</li><li>Casual</li><li>Brain teaser</li></ul>
+              <p>Giải đố hài hước: kéo, thả, chạm và kết hợp đồ vật để đưa chú bánh bao về đúng chiếc bát. Mỗi màn là một cú twist bất ngờ — trốn chó đói, nhảy qua dung nham, tìm đúng chiếc bát thật.</p>
+              <ul class="world-stats"><li><b>100K+</b><span>lượt tải</span></li><li><b>Puzzle</b><span>thể loại</span></li><li><b>ABI Global</b><span>phát hành</span></li></ul>
               <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.hb.getinthebowl&amp;hl=vi" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M4.6 2.3 14 11.7l-9.4 9.4c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1zm10.9 10.9 2.4 2.4-11 6.3 8.6-8.7zm3.6-4.6 2.4 1.4c.8.5.8 1.6 0 2.1l-2.4 1.4-2.6-2.5 2.6-2.4zM6.9 2.1l11 6.3-2.4 2.4-8.6-8.7z"/></svg>
                 <span><small>Tải trên</small>Google Play</span>
               </a>
             </div>
-          </article>
-          <article class="game reveal">
-            <div class="game-media">
-              
-              <img class="game-shot" src="assets/img/games/jolly-shot.webp" alt="Ảnh màn chơi Jolly Tiles với các ô trái cây" width="540" height="960" loading="lazy">
-            </div>
-            <div class="game-body">
-              <div class="game-head">
-                <img class="game-icon" src="assets/img/games/jolly-icon.webp" alt="" width="64" height="64" loading="lazy">
-                <div>
-                  <h3>Jolly Tiles: Triple Match</h3>
-                  <small>Phát hành: ABI Games</small>
-                </div>
+            <div class="world-stage">
+              <div class="fan">
+                <img class="phone p1" src="assets/img/games/bowl-2.webp" alt="" width="480" height="854" loading="lazy">
+                <img class="phone p3" src="assets/img/games/bowl-3.webp" alt="" width="480" height="854" loading="lazy">
+                <img class="phone p2" src="assets/img/games/bowl-1.webp" alt="Màn chơi Where's My Bowl: chú bánh bao nhào bột" width="480" height="854" loading="lazy">
               </div>
-              <p>Ghép ba ô giống nhau, dọn sạch những bàn chơi đầy màu sắc — câu đố nhẹ nhàng để thư giãn mà vẫn cần chiến thuật.</p>
-              <ul class="meta"><li>Tile Match</li><li>Puzzle</li><li>Relax</li></ul>
+              <img class="pop pop-dough" src="assets/img/chars/bun-dough.webp" alt="" loading="lazy">
+              <img class="pop pop-crybowl" src="assets/img/chars/bowl-crying.webp" alt="" loading="lazy">
+              <img class="pop pop-scared" src="assets/img/chars/bun-scared.webp" alt="" loading="lazy">
+            </div>
+          </article>
+          <article class="world world-jolly reveal">
+            <span class="world-no" aria-hidden="true">02</span>
+            <div class="world-copy">
+              <div class="world-id">
+                <img src="assets/img/games/jolly-icon.webp" alt="" width="72" height="72" loading="lazy">
+                <div><span class="world-tag">World 02</span><h3>Jolly Tiles: Triple Match</h3></div>
+              </div>
+              <p>Ghép ba ô giống nhau, dọn sạch những bàn chơi đầy màu sắc — câu đố nhẹ nhàng để thư giãn mà vẫn cần chiến thuật, với booster và nhiều theme khác nhau.</p>
+              <ul class="world-stats"><li><b>Triple</b><span>match</span></li><li><b>Relax</b><span>puzzle</span></li><li><b>ABI Games</b><span>phát hành</span></li></ul>
               <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.jolly.tile.triple&amp;hl=vi" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M4.6 2.3 14 11.7l-9.4 9.4c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1zm10.9 10.9 2.4 2.4-11 6.3 8.6-8.7zm3.6-4.6 2.4 1.4c.8.5.8 1.6 0 2.1l-2.4 1.4-2.6-2.5 2.6-2.4zM6.9 2.1l11 6.3-2.4 2.4-8.6-8.7z"/></svg>
                 <span><small>Tải trên</small>Google Play</span>
               </a>
             </div>
-          </article>
-          <article class="game reveal">
-            <div class="game-media">
-              
-              <img class="game-shot" src="assets/img/games/shikaku-shot.webp" alt="Ảnh màn chơi Shikaku Cats với các khối mèo" width="540" height="960" loading="lazy">
-            </div>
-            <div class="game-body">
-              <div class="game-head">
-                <img class="game-icon" src="assets/img/games/shikaku-icon.webp" alt="" width="64" height="64" loading="lazy">
-                <div>
-                  <h3>Shikaku Cats: Number Puzzle</h3>
-                  <small>Phát hành: ABI Games</small>
-                </div>
+            <div class="world-stage">
+              <div class="fan">
+                <img class="phone p1" src="assets/img/games/jolly-2.webp" alt="" width="480" height="854" loading="lazy">
+                <img class="phone p3" src="assets/img/games/jolly-3.webp" alt="" width="480" height="854" loading="lazy">
+                <img class="phone p2" src="assets/img/games/jolly-1.webp" alt="Màn chơi Jolly Tiles với các ô trái cây" width="480" height="854" loading="lazy">
               </div>
-              <p>Vẽ hình chữ nhật phủ đúng số ô theo từng con số để lật mở những chú mèo đáng yêu đang trốn bên dưới.</p>
-              <ul class="meta"><li>Logic</li><li>Shikaku</li><li>Cats</li></ul>
+              <img class="pop pop-trio" src="assets/img/chars/tiles-trio.webp" alt="" loading="lazy">
+              <img class="pop pop-cherry" src="assets/img/chars/fruit-cherry.webp" alt="" loading="lazy">
+              <img class="pop pop-pear" src="assets/img/chars/fruit-pear.webp" alt="" loading="lazy">
+              <img class="pop pop-melon" src="assets/img/chars/fruit-watermelon.webp" alt="" loading="lazy">
+              <img class="pop pop-orange" src="assets/img/chars/fruit-orange.webp" alt="" loading="lazy">
+            </div>
+          </article>
+          <article class="world world-shikaku reveal">
+            <img class="edge-peek peek-siamese" src="assets/img/chars/cat-siamese.webp" alt="" loading="lazy">
+            <img class="edge-peek peek-ragdoll" src="assets/img/chars/cat-ragdoll.webp" alt="" loading="lazy">
+            <span class="world-no" aria-hidden="true">03</span>
+            <div class="world-copy">
+              <div class="world-id">
+                <img src="assets/img/games/shikaku-icon.webp" alt="" width="72" height="72" loading="lazy">
+                <div><span class="world-tag">World 03</span><h3>Shikaku Cats: Number Puzzle</h3></div>
+              </div>
+              <p>Vẽ hình chữ nhật phủ đúng số ô theo từng con số để lật mở những chú mèo đáng yêu đang trốn bên dưới — từ dễ thương đến xoắn não.</p>
+              <ul class="world-stats"><li><b>Logic</b><span>puzzle</span></li><li><b>Shikaku</b><span>thể loại</span></li><li><b>ABI Games</b><span>phát hành</span></li></ul>
               <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.shikaku.cat.puzzle&amp;hl=vi" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M4.6 2.3 14 11.7l-9.4 9.4c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1zm10.9 10.9 2.4 2.4-11 6.3 8.6-8.7zm3.6-4.6 2.4 1.4c.8.5.8 1.6 0 2.1l-2.4 1.4-2.6-2.5 2.6-2.4zM6.9 2.1l11 6.3-2.4 2.4-8.6-8.7z"/></svg>
                 <span><small>Tải trên</small>Google Play</span>
               </a>
+            </div>
+            <div class="world-stage">
+              <div class="fan">
+                <img class="phone p1" src="assets/img/games/shikaku-2.webp" alt="" width="480" height="854" loading="lazy">
+                <img class="phone p3" src="assets/img/games/shikaku-3.webp" alt="" width="480" height="854" loading="lazy">
+                <img class="phone p2" src="assets/img/games/shikaku-1.webp" alt="Màn chơi Shikaku Cats với các khối mèo" width="480" height="854" loading="lazy">
+              </div>
             </div>
           </article>
         </div>
@@ -248,7 +266,9 @@
         </div>
 
         <div class="courses">
-          <article class="course course-featured reveal" data-cat="dev">
+          <div class="course-wrap reveal" data-cat="dev">
+            <img class="perch" src="assets/img/chars/cat-glasses.webp" alt="" aria-hidden="true" loading="lazy">
+          <article class="course course-featured" data-cat="dev">
             <div class="course-top">
               <span class="tag tag-hot">Trung hạn · Nổi bật</span>
               <span class="tag">Lập trình</span>
@@ -260,6 +280,7 @@
             </ul>
             <a class="course-link" href="#contact">Nhận tư vấn lộ trình <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
+          </div>
 
           <article class="course reveal" data-cat="dev">
             <div class="course-top"><span class="tag">Ngắn hạn</span><span class="tag">Lập trình</span></div>
@@ -303,7 +324,11 @@
           <p class="eyebrow reveal">Lộ trình</p>
           <h2 class="reveal">Từ người mới đến <span class="grad-text">game developer</span></h2>
         </div>
-        <ol class="path">
+        <ol class="path" id="path">
+          <li class="walker" aria-hidden="true">
+            <img class="walk-a" src="assets/img/chars/bun-dough.webp" alt="">
+            <img class="walk-b" src="assets/img/chars/bun-chef.webp" alt="">
+          </li>
           <li class="step reveal">
             <span class="step-no">01</span>
             <h3>Nền tảng</h3>
@@ -378,52 +403,54 @@
       </div>
     </section>
 
-    <!-- LIFE AT RISEON -->
-    <section class="section" id="life">
+    <!-- LIFE AT RISEON: character select -->
+    <section class="section section-alt" id="life">
       <div class="container">
         <div class="section-head">
           <p class="eyebrow reveal">Life at RiseOn</p>
-          <h2 class="reveal">Làm game nghiêm túc, <span class="grad-text">chơi</span> cũng nghiêm túc</h2>
-          <p class="section-sub reveal">Ở RiseOn, deadline là thật, nhưng meme cũng là thật. Đây là vài khoảnh khắc từ studio.</p>
+          <h2 class="reveal">Chọn <span class="grad-text">nhân vật</span> của bạn</h2>
+          <p class="section-sub reveal">Đội ngũ RiseOn — mỗi người một class, một skill riêng. Ảnh do team tự chế, không chịu trách nhiệm về độ nghiêm túc.</p>
         </div>
-        <div class="gallery">
-          <figure class="shot reveal">
-            <button type="button" aria-label="Phóng to ảnh"><img src="assets/img/life/cute-mode.webp" alt="Ảnh chế thành viên với thân mèo trắng trên nền trái tim hồng" width="900" height="900" loading="lazy"></button>
-            <figcaption>Khi được review: “code sạch đấy”</figcaption>
-          </figure>
-          <figure class="shot reveal">
-            <button type="button" aria-label="Phóng to ảnh"><img src="assets/img/life/concept-art.webp" alt="Concept art giả tưởng với rồng và đôi cánh ánh sáng" width="600" height="900" loading="lazy"></button>
-            <figcaption>Concept art team thử sức… hơi quá tay</figcaption>
-          </figure>
-          <figure class="shot reveal">
-            <button type="button" aria-label="Phóng to ảnh"><img src="assets/img/life/trung-thu.webp" alt="Mâm cỗ Trung Thu tỉa hình thành viên studio" width="600" height="900" loading="lazy"></button>
-            <figcaption>Trung Thu ở RiseOn: mâm cỗ cũng phải có nhân vật chính</figcaption>
-          </figure>
-          <figure class="shot reveal">
-            <button type="button" aria-label="Phóng to ảnh"><img src="assets/img/life/studio-moment.webp" alt="Thành viên mặc áo đồng phục đứng trong văn phòng" width="485" height="860" loading="lazy"></button>
-            <figcaption>Một ngày bình thường ở studio</figcaption>
-          </figure>
-          <figure class="shot reveal">
-            <button type="button" aria-label="Phóng to ảnh"><img src="assets/img/life/fruit-portrait.webp" alt="Chân dung thành viên ghép từ rau củ quả" width="900" height="900" loading="lazy"></button>
-            <figcaption>Game Designer sau ba deadline liên tiếp</figcaption>
-          </figure>
-          <figure class="shot reveal">
-            <button type="button" aria-label="Phóng to ảnh"><img src="assets/img/life/tiger-mode.webp" alt="Ảnh chế thành viên trong hình con hổ ngồi giữa đồng cỏ" width="669" height="900" loading="lazy"></button>
-            <figcaption>Chế độ hổ: bật khi build thành công lần đầu</figcaption>
-          </figure>
+        <div class="select reveal">
+          <div class="stage">
+            <div class="stage-floor"></div>
+            <img class="stage-char" id="stageChar" src="assets/img/team/tiger.webp" alt="Hổ Thiền Debug">
+            <span class="stage-p1">P1</span>
+          </div>
+          <div class="profile" aria-live="polite">
+            <p class="profile-class" id="pClass">Tank · Backend</p>
+            <h3 id="pName">Hổ Thiền Debug</h3>
+            <p class="profile-quote" id="pQuote">“Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.”</p>
+            <ul class="stats" id="pStats"></ul>
+            <div class="skill"><span>Skill đặc biệt</span><b id="pSkill">Thiền định: giảm 50% hoảng loạn khi build lỗi</b></div>
+          </div>
+        </div>
+        <div class="roster reveal" role="tablist" aria-label="Chọn thành viên">
+          <button type="button" class="slot is-active" role="tab" aria-selected="true" data-i="0" tabindex="0">
+            <img src="assets/img/team/tiger.webp" alt="" loading="lazy"><span>Hổ Thiền Debug</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="1" tabindex="-1">
+            <img src="assets/img/team/cat.webp" alt="" loading="lazy"><span>Mèo Review</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="2" tabindex="-1">
+            <img src="assets/img/team/fruit.webp" alt="" loading="lazy"><span>Hiệp sĩ Trái cây</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="3" tabindex="-1">
+            <img src="assets/img/team/trungthu.webp" alt="" loading="lazy"><span>Siêu sao Trung Thu</span>
+          </button>
+          <button type="button" class="slot" role="tab" aria-selected="false" data-i="4" tabindex="-1">
+            <img src="assets/img/team/studio.webp" alt="" loading="lazy"><span>Tân binh Studio</span>
+          </button>
         </div>
       </div>
-      <dialog class="lightbox" id="lightbox" aria-label="Xem ảnh">
-        <button type="button" class="lightbox-close" aria-label="Đóng">×</button>
-        <img alt="">
-        <p></p>
-      </dialog>
     </section>
 
     <!-- CONTACT -->
-    <section class="section section-alt" id="contact">
+    <section class="section" id="contact">
       <div class="container">
-        <div class="cta reveal">
+        <div class="cta-wrap reveal">
+        <img class="peek" src="assets/img/chars/cat-white.webp" alt="" aria-hidden="true" loading="lazy">
+        <div class="cta">
           <img class="cta-symbol" src="assets/img/symbol.svg" alt="" aria-hidden="true">
           <div class="cta-copy">
             <h2>Sẵn sàng <span class="grad-text">level up</span>?</h2>
@@ -434,6 +461,8 @@
             <a class="btn btn-ghost" href="https://zalo.me/0363661118" target="_blank" rel="noopener">Chat Zalo</a>
             <a class="btn btn-ghost" href="mailto:riseongamestudio@gmail.com?subject=T%C6%B0%20v%E1%BA%A5n%20kh%C3%B3a%20h%E1%BB%8Dc%20RiseOn">Gửi email</a>
           </div>
+        </div>
+
         </div>
 
         <div class="locations">

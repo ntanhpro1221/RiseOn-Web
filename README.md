@@ -7,9 +7,14 @@ Website giới thiệu **RiseOn Game Studio** (trước đây là HB Academy). T
 ```
 index.html              Trang chính (một trang, nhiều section)
 assets/css/style.css    Toàn bộ giao diện + màu thương hiệu (biến CSS ở đầu file)
-assets/js/main.js       Menu mobile, hiệu ứng cuộn, lọc khóa học, mini game pixel
+assets/js/main.js       Menu, parallax hero, bánh bao đi theo lộ trình, màn chọn nhân vật, mini game pixel
 assets/img/             Logo, biểu tượng O, favicon, ảnh chia sẻ (og-image.png)
+assets/img/chars/       Nhân vật đã tách nền từ các game (bánh bao, mèo, trái cây…)
+assets/img/games/       Icon + screenshot từ Google Play
+assets/img/team/        Thành viên đã tách nền cho màn "Chọn nhân vật"
 ```
+
+Thêm/sửa thành viên: thêm ảnh PNG/WebP nền trong suốt vào `assets/img/team/`, thêm một nút `.slot` trong `index.html` và một dòng trong mảng `TEAM` ở `main.js`.
 
 ## Bộ nhận diện (lấy từ RiseOnLogo.ai)
 
