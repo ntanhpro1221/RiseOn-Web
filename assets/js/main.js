@@ -98,6 +98,10 @@
   }
 
   // Character select
+  // RiseOn Arena game server — runs on the studio Mac mini, reachable on the office LAN only
+  const GAME_URL = "http://192.168.0.77:3000/";
+  const playBtn = document.getElementById("playBtn");
+
   const TEAM = [
     { img: "tiger", name: "Hổ Thiền Debug", cls: "Tank · Backend", quote: "Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.",
       stats: [["Code", 92], ["Design", 40], ["Meme", 85], ["Bình tĩnh", 99]], skill: "Thiền định: giảm 50% hoảng loạn khi build lỗi" },
@@ -126,6 +130,7 @@
       if (focus) slots[i].focus();
       stageChar.src = `assets/img/team/${m.img}.webp`;
       stageChar.alt = m.name;
+      if (playBtn) playBtn.href = `${GAME_URL}?char=${m.img}`;
       stageChar.classList.remove("is-swapping");
       void stageChar.offsetWidth; // restart the summon animation
       stageChar.classList.add("is-swapping");

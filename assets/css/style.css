@@ -567,6 +567,8 @@ strong { color: var(--white); font-weight: 600; }
 .skill { padding: 16px 18px; border-radius: 14px; border: 1px dashed rgba(246,173,19,.4); background: rgba(246,173,19,.06); }
 .skill span { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); margin-bottom: 4px; }
 .skill b { font-weight: 600; }
+.play-btn { align-self: flex-start; margin-top: 22px; }
+.play-note { margin: 10px 0 0; font-size: .82rem; color: var(--muted); }
 
 .roster { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 18px; }
 .slot {
