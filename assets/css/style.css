@@ -807,3 +807,6 @@ strong { color: var(--white); font-weight: 600; }
 .footer-links { display: inline-flex; gap: 18px; align-items: center; flex-wrap: wrap; }
 .admin-link { padding: 6px 12px; border: 1px solid var(--line, rgba(255,255,255,.12)); border-radius: 999px; }
 .admin-link:hover { border-color: var(--amber); }
+.old-new { justify-content: center; }
+.nav-admin { font-size: .85rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(249,222,11,.35); white-space: nowrap; }
+.nav-admin:hover { border-color: var(--amber); }

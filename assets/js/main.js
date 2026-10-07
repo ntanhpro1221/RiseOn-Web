@@ -121,8 +121,7 @@
     .then((c) => {
       if (c && c.url) { gameUrl = c.url; updatePlay(); }
       // Admin: the Mac's PIN-protected panel to switch the game server on/off (public link, LAN as fallback)
-      const admin = document.getElementById("adminLink");
-      if (admin && c && (c.admin || c.adminLan)) admin.href = c.admin || c.adminLan;
+      if (c && (c.admin || c.adminLan)) document.querySelectorAll("[data-admin]").forEach((a) => { a.href = c.admin || c.adminLan; });
     })
     .catch(() => {});
 
@@ -174,8 +173,8 @@
       $("pClass").textContent = m.cls;
       $("pName").textContent = m.name;
       $("pQuote").textContent = `“${m.quote}”`;
-      // the character's real skill set in RiseOn Arena (+ the grenade everyone has)
-      $("pSkills").innerHTML = [...m.skills, ["💣", "Lựu đạn", 5, "Mọi nhân vật đều có, không cần nhặt"]]
+      // the character's real skill set in RiseOn Arena
+      $("pSkills").innerHTML = m.skills
         .map(([icon, name, cd, desc]) => `<li><span class="sk-ic">${icon}</span><span><b>${name}</b><small>hồi ${cd}s</small><em>${desc}</em></span></li>`).join("");
       statsEl.innerHTML = m.stats.map(([k, v]) =>
         `<li><span>${k}</span><div class="bar"><i data-v="${v}"></i></div><b>${v}</b></li>`).join("");

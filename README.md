@@ -1,6 +1,6 @@
 # RiseOn Game Studio — Website
 
-Website giới thiệu **RiseOn Game Studio** (trước đây là HB Academy). Trang tĩnh thuần HTML/CSS/JS, host miễn phí bằng **GitHub Pages**.
+Website giới thiệu **RiseOn Game Studio**. Trang tĩnh thuần HTML/CSS/JS, host miễn phí bằng **GitHub Pages**.
 
 ## Cấu trúc
 
