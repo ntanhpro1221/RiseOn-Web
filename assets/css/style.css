@@ -810,3 +810,51 @@ strong { color: var(--white); font-weight: 600; }
 .old-new { justify-content: center; }
 .nav-admin { font-size: .85rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(249,222,11,.35); white-space: nowrap; }
 .nav-admin:hover { border-color: var(--amber); }
+
+/* =================== phones: compact, swipe-first layout =================== */
+@media (max-width: 760px) {
+  .section { padding: 56px 0; }
+  .section-head { margin-bottom: 22px; }
+  .section-head-gap { margin-top: 48px; }
+
+  /* long stacks of cards become sideways swipe rows */
+  .worlds, .features, .courses, .quotes {
+    display: flex; flex-direction: row; gap: 14px; columns: auto;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+    margin: 0 -20px; padding: 6px 20px 16px; scroll-padding: 0 20px; scrollbar-width: none;
+  }
+  .worlds::-webkit-scrollbar, .features::-webkit-scrollbar, .courses::-webkit-scrollbar, .quotes::-webkit-scrollbar { display: none; }
+  .worlds > *, .features > *, .courses > *, .quotes > * { flex: 0 0 84%; scroll-snap-align: center; margin: 0; break-inside: auto; }
+  .features > * { flex-basis: 72%; }
+  .course-wrap { grid-row: auto; margin-top: 0 !important; padding-top: 0; }
+  .course-wrap .perch { display: none; }
+  .world { padding: 26px 18px 18px; }
+  .world-no { font-size: 4.5rem; top: -6px; }
+  .world-stage { height: 300px; zoom: .78; }
+  .world-copy p { font-size: .9rem; }
+
+  /* character select: pick first (sticky strip under the header), then see who you picked right below */
+  #life .container { display: flex; flex-direction: column; }
+  #life .section-head { order: 0; }
+  #life .roster { order: 1; position: sticky; top: calc(var(--header-h) + 4px); z-index: 20;
+    display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
+    margin: 0 -20px 14px; padding: 8px 20px; background: rgba(17,17,17,.94); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line); }
+  #life .roster::-webkit-scrollbar { display: none; }
+  #life .slot { flex: 0 0 78px; height: 92px; padding: 0 4px 6px; border-radius: 14px; font-size: .64rem; scroll-snap-align: center; }
+  #life .slot img { height: 66px; bottom: 20px; }
+  #life .slot span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+  #life .select { order: 2; grid-template-columns: 1fr; border-radius: 22px; }
+  #life .stage { min-height: 300px; }
+  #life .stage-char { height: 88%; bottom: 30px; }
+  #life .profile { padding: 20px 18px 22px; }
+  #life .profile h3 { font-size: 1.6rem; margin-bottom: 6px; }
+  #life .profile-quote { min-height: 0; font-size: .9rem; margin-bottom: 8px; }
+  #life .stats { grid-template-columns: 1fr 1fr; gap: 8px 14px; margin: 6px 0 14px; }
+  #life .stats li { grid-template-columns: 1fr 30px; gap: 4px 8px; font-size: .78rem; }
+  #life .stats li .bar { grid-column: 1 / -1; grid-row: 2; height: 7px; }
+  #life .skill { padding: 12px 14px; }
+  #life .skill-set em { font-size: .8rem; }
+  #life .play-btn { align-self: stretch; justify-content: center; margin-top: 16px; }
+  #life .play-note { font-size: .76rem; }
+}

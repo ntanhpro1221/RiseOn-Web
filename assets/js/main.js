@@ -163,6 +163,9 @@
         s.tabIndex = on ? 0 : -1;
       });
       if (focus) slots[i].focus();
+      // keep the picked slot visible when the roster is a sideways strip (phones); never scroll the page itself
+      const strip = slots[i].parentElement;
+      if (strip.scrollWidth > strip.clientWidth) strip.scrollTo({ left: slots[i].offsetLeft - strip.offsetLeft - (strip.clientWidth - slots[i].offsetWidth) / 2, behavior: "smooth" });
       stageChar.src = `assets/img/team/${m.img}.webp`;
       stageChar.alt = m.name;
       playChar = m.img;
