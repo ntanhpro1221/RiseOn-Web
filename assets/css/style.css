@@ -900,3 +900,5 @@ strong { color: var(--white); font-weight: 600; }
 @media (max-width: 860px) { html.header-tucked #life .roster { top: calc(var(--safe-top) + 4px); } }
 /* landscape phones with a notch: keep content clear of it now that the page may extend under it */
 body { padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
+/* social buttons sit inside a footer column: keep their icon centred (the phone rule for footer links made them left-aligned) */
+.footer-col .socials a, .socials a { display: inline-grid; place-items: center; justify-content: center; padding: 0; }
