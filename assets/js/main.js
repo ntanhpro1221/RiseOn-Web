@@ -98,9 +98,16 @@
   }
 
   // Character select
-  // RiseOn Arena game server — runs on the studio Mac mini, reachable on the office LAN only
-  const GAME_URL = "http://192.168.0.77:3000/";
+  // RiseOn Arena runs on the studio Mac mini. The Mac keeps play.json updated with its current public
+  // address; office visitors arriving there are redirected by the game server to the faster LAN address.
+  let gameUrl = "http://192.168.0.77:3000/";
+  let playChar = "tiger";
   const playBtn = document.getElementById("playBtn");
+  const updatePlay = () => { if (playBtn) playBtn.href = `${gameUrl}?char=${playChar}`; };
+  fetch(`play.json?t=${Date.now()}`, { cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((c) => { if (c && c.url) { gameUrl = c.url; updatePlay(); } })
+    .catch(() => {});
 
   const TEAM = [
     { img: "tiger", name: "Hổ Thiền Debug", cls: "Tank · Backend", quote: "Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.",
@@ -130,7 +137,8 @@
       if (focus) slots[i].focus();
       stageChar.src = `assets/img/team/${m.img}.webp`;
       stageChar.alt = m.name;
-      if (playBtn) playBtn.href = `${GAME_URL}?char=${m.img}`;
+      playChar = m.img;
+      updatePlay();
       stageChar.classList.remove("is-swapping");
       void stageChar.offsetWidth; // restart the summon animation
       stageChar.classList.add("is-swapping");
