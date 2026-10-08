@@ -101,7 +101,7 @@
 
   // Learning path: the bun walks down the line as you scroll (staying near the middle of the screen),
   // lights up each step it reaches, and turns into the chef at the end
-  const path = document.getElementById("path");
+  const path = document.getElementById("pathList");
   if (path) {
     const walker = path.querySelector(".walker");
     const steps = [...path.querySelectorAll(".step")];
@@ -140,6 +140,11 @@
     .then((r) => (r.ok ? r.json() : null))
     .then((c) => {
       if (c && c.url) { gameUrl = c.url; updatePlay(); }
+      if (playBtn && c && c.url) {
+        const ctl = new AbortController(); setTimeout(() => ctl.abort(), 6000);
+        fetch(`${gameUrl.replace(/\/$/, "")}/health`, { mode: "no-cors", cache: "no-store", signal: ctl.signal })
+          .catch(() => { playBtn.classList.add("is-offline"); playBtn.setAttribute("aria-disabled", "true"); playBtn.querySelector("svg") && (playBtn.firstChild.textContent = "Server game đang tạm nghỉ "); });
+      }
       // Admin: the Mac's PIN-protected panel to switch the game server on/off (public link, LAN as fallback)
       if (c && (c.admin || c.adminLan)) document.querySelectorAll("[data-admin]").forEach((a) => { a.href = c.admin || c.adminLan; });
     })
@@ -147,35 +152,36 @@
 
   const TEAM = [
     { img: "tiger", name: "Hổ Thiền Debug", cls: "Tank · Backend", quote: "Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.",
-      stats: [["Code", 92], ["Design", 40], ["Meme", 85], ["Bình tĩnh", 99]], skills: [["🐯", "Gầm hổ", 8, "Sóng âm hất văng mọi kẻ xung quanh"], ["🧘", "Thiền định", 14, "3s giảm 70% sát thương, không bị đẩy lùi, hồi 20 máu"]] },
+      stats: [["Code", 92], ["Design", 40], ["Meme", 85], ["Bình tĩnh", 99]], skills: [["🐯", "Gầm hổ",8,"Sóng âm hất văng mọi kẻ xung quanh"], ["🧘", "Thiền định",14,"3s giảm 70% sát thương, không bị đẩy lùi, hồi 20 máu"]] },
     { img: "cat", name: "Mèo Review", cls: "Support · QA", quote: "Code đẹp quá, cho em xin approve nha.",
-      stats: [["Code", 70], ["Design", 75], ["Meme", 95], ["Dễ thương", 100]], skills: [["🐾", "Vồ mồi", 5, "Lao vút theo hướng ngắm, vồ trúng gây 16 sát thương"], ["🐈", "Chín mạng", 22, "Trong 6s, nếu bị hạ sẽ hồi sinh ở chỗ an toàn với 40 máu"]] },
+      stats: [["Code", 70], ["Design", 75], ["Meme", 95], ["Dễ thương", 100]], skills: [["🐾", "Vồ mồi",5,"Lao vút theo hướng ngắm, vồ trúng gây 16 sát thương"], ["🐈", "Chín mạng",25,"Trong 6s, nếu bị hạ sẽ hồi sinh ở chỗ an toàn với 30 máu"]] },
     { img: "fruit", name: "Hiệp sĩ Trái cây", cls: "Mage · Game Design", quote: "Ý tưởng tươi mới mỗi ngày — theo nghĩa đen.",
-      stats: [["Code", 55], ["Design", 96], ["Meme", 80], ["Vitamin", 100]], skills: [["🍉", "Mưa trái cây", 10, "Trái cây rơi ào ào xuống quanh điểm ngắm"], ["🥤", "Sinh tố", 15, "Hồi 35 máu và nạp đầy nhiên liệu bay"]] },
+      stats: [["Code", 55], ["Design", 96], ["Meme", 80], ["Vitamin", 100]], skills: [["🍉", "Mưa trái cây",10,"Trái cây rơi ào ào xuống quanh điểm ngắm"], ["🥤", "Sinh tố",15,"Hồi 35 máu và nạp đầy nhiên liệu bay"]] },
     { img: "trungthu", name: "Siêu sao Trung Thu", cls: "Fighter · Gameplay", quote: "SUGOI I-KOI! Sự kiện nào cũng phải có nhân vật chính.",
-      stats: [["Code", 80], ["Design", 65], ["Meme", 90], ["Thể lực", 97]], skills: [["⭐", "Đèn ông sao", 6, "Ném ngôi sao bay ra rồi quay về, trúng được 2 lần"], ["🥮", "Bánh nướng", 9, "Lao thẳng xuống, tạo chấn động khi chạm đất"]] },
+      stats: [["Code", 80], ["Design", 65], ["Meme", 90], ["Thể lực", 97]], skills: [["⭐", "Đèn ông sao",6,"Ném ngôi sao bay ra rồi quay về, trúng được 2 lần"], ["🥮", "Bánh nướng",9,"Lao thẳng xuống, tạo chấn động khi chạm đất"]] },
     { img: "studio", name: "Tân binh Studio", cls: "Rookie · Unity Dev", quote: "Hôm nay học Unity, mai ship game lên store!",
-      stats: [["Code", 75], ["Design", 70], ["Meme", 88], ["Nhiệt huyết", 100]], skills: [["⏪", "Ctrl+Z", 10, "Quay ngược về vị trí 2 giây trước"], ["🛠️", "Spawn Prefab", 16, "Đặt tháp súng tự bắn kẻ địch gần nhất trong 6s"]] },
+      stats: [["Code", 75], ["Design", 70], ["Meme", 88], ["Nhiệt huyết", 100]], skills: [["⏪", "Ctrl+Z",10,"Quay ngược về vị trí 2 giây trước"], ["🛠️", "Spawn Prefab",16,"Đặt tháp súng tự bắn kẻ địch gần nhất trong 6s"]] },
     { img: "xoan", name: "Xoăn Lễ Hội", cls: "Bard · Community", quote: "Đi đâu cũng mang theo không khí lễ hội.",
-      stats: [["Code", 68], ["Design", 82], ["Meme", 93], ["Năng lượng", 100]], skills: [["🎉", "Pháo giấy", 7, "Ném quả pháo giấy, nổ tung khi chạm người hoặc sàn"], ["🎈", "Chùm bóng bay", 13, "4s lơ lửng nhẹ tênh: rơi chậm, bay không tốn nhiên liệu"]] },
+      stats: [["Code", 68], ["Design", 82], ["Meme", 93], ["Năng lượng", 100]], skills: [["🎉", "Pháo giấy",6,"Ném quả pháo giấy, nổ tung khi chạm người hoặc sàn"], ["🎈", "Chùm bóng bay",13,"4s lơ lửng nhẹ tênh: rơi chậm, bay không tốn nhiên liệu"]] },
     { img: "courage", name: "Chó Nhát Gan", cls: "Scout · QA Tester", quote: "Sợ thì sợ, nhưng bug thì vẫn phải tìm cho ra!",
-      stats: [["Code", 60], ["Design", 58], ["Meme", 99], ["Hét to", 100]], skills: [["😱", "Hét thất thanh", 9, "Tiếng hét kinh hoàng thổi bay mọi kẻ ở gần"], ["💨", "Chạy mất dép", 12, "3s chạy nhanh gấp rưỡi, nhảy cao hơn, nhận ít hơn 40% sát thương"]] },
+      stats: [["Code", 60], ["Design", 58], ["Meme", 99], ["Hét to", 100]], skills: [["😱", "Hét thất thanh",8,"Tiếng hét kinh hoàng thổi bay mọi kẻ ở gần"], ["💨", "Chạy mất dép",12,"3s chạy nhanh gấp rưỡi, nhảy cao hơn, nhận ít hơn 40% sát thương"]] },
     { img: "soi", name: "Sói Đêm Trăng", cls: "Assassin · Night Shift", quote: "Deadline đêm nay? Trăng tròn rồi, sẵn sàng.",
-      stats: [["Code", 88], ["Design", 60], ["Meme", 82], ["Thức khuya", 100]], skills: [["🐺", "Cào xé", 4.5, "Lướt tới, cào một nhát vòng cung trúng mọi kẻ phía trước"], ["🌕", "Tru trăng", 16, "6s cuồng hóa: đấm và Cào xé mạnh hơn 60%, hút 40% sát thương thành máu"]] },
+      stats: [["Code", 88], ["Design", 60], ["Meme", 82], ["Thức khuya", 100]], skills: [["🐺", "Cào xé",6,"Lướt tới, cào một nhát vòng cung trúng mọi kẻ phía trước"], ["🌕", "Tru trăng",18,"6s cuồng hóa: đấm và Cào xé mạnh hơn 35%, hút 25% sát thương thành máu"]] },
     { img: "chidai", name: "Chị Đại", cls: "Leader · Producer", quote: "Mày nghĩ tao sợ deadline à?",
-      stats: [["Code", 72], ["Design", 85], ["Meme", 90], ["Khí chất", 100]], skills: [["😏", "Mày nghĩ tao sợ?", 9, "1.5s thủ thế: chặn mọi đòn, phản lại kẻ tấn công 15 sát thương"], ["👁️", "Lườm cháy mặt", 7, "Ánh mắt tia laser xuyên thấu mọi kẻ trên đường ngắm"]] },
+      stats: [["Code", 72], ["Design", 85], ["Meme", 90], ["Khí chất", 100]], skills: [["😏", "Mày nghĩ tao sợ?",9,"1s thủ thế: chặn mọi đòn, phản 15 sát thương (mỗi kẻ một lần)"], ["👁️", "Lườm cháy mặt",7,"Ánh mắt tia laser xuyên thấu mọi kẻ trên đường ngắm"]] },
     { img: "tire", name: "Người Bánh Xe", cls: "Tank · DevOps", quote: "Pipeline chạy êm như lốp mới thay.",
-      stats: [["Code", 84], ["Design", 50], ["Meme", 94], ["Bền bỉ", 100]], skills: [["🛞", "Lăn bánh", 6, "Cuộn tròn lăn vèo về phía trước, tông ai văng người đó"], ["🍜", "Mì ly tiếp sức", 14, "Hồi 25 máu và chạy nhanh hơn 35% trong 4s"]] },
+      stats: [["Code", 84], ["Design", 50], ["Meme", 94], ["Bền bỉ", 100]], skills: [["🛞", "Lăn bánh",6,"Cuộn tròn lăn vèo về phía trước, tông ai văng người đó"], ["🍜", "Mì ly tiếp sức",14,"Hồi 25 máu và chạy nhanh hơn 35% trong 4s"]] },
     { img: "co", name: "Kỳ Thủ", cls: "Support · Marketing", quote: "Cờ cắm tới đâu, đội vui tới đó!",
-      stats: [["Code", 66], ["Design", 78], ["Meme", 92], ["Nụ cười", 100]], skills: [["🚩", "Cắm cờ", 15, "Cắm cờ 6s: đứng gần cờ hồi 5 máu/giây và nhận ít hơn 30% sát thương"], ["🎌", "Phất cờ", 7, "Phất cờ quét một vòng, hất văng kẻ địch xung quanh"]] },
+      stats: [["Code", 66], ["Design", 78], ["Meme", 92], ["Nụ cười", 100]], skills: [["🚩", "Cắm cờ",15,"Cắm cờ 6s: đứng gần cờ hồi 5 máu/giây và nhận ít hơn 30% sát thương"], ["🎌", "Phất cờ",6,"Phất cờ quét một vòng, hất văng kẻ địch xung quanh"]] },
     { img: "dmc", name: "Thợ Săn Quỷ", cls: "Slayer · Gameplay", quote: "Quỷ khóc, thần sầu — bug cũng phải chạy.",
-      stats: [["Code", 86], ["Design", 62], ["Meme", 91], ["Ngầu", 100]], skills: [["🗡️", "Stinger", 5.5, "Lao kiếm đâm thẳng theo hướng ngắm, xuyên qua và hất văng mọi kẻ trên đường"], ["🔫", "Ebony & Ivory", 7, "Rút song súng bắn một chùm 5 viên hình quạt"]] },
+      stats: [["Code", 86], ["Design", 62], ["Meme", 91], ["Ngầu", 100]], skills: [["🗡️", "Stinger",6.5,"Lao kiếm đâm thẳng theo hướng ngắm, xuyên qua và hất văng mọi kẻ trên đường"], ["🔫", "Ebony & Ivory",8.5,"Rút song súng bắn một chùm 5 viên hình quạt"]] },
   ];
   const slots = [...document.querySelectorAll(".roster .slot")];
   const stageChar = document.getElementById("stageChar");
   if (slots.length && stageChar) {
     const $ = (id) => document.getElementById(id);
     const statsEl = $("pStats");
+    let userPick = false;
     const select = (i, focus) => {
       const m = TEAM[i];
       slots.forEach((s, n) => {
@@ -190,6 +196,11 @@
       if (strip.scrollWidth > strip.clientWidth) strip.scrollTo({ left: slots[i].offsetLeft - strip.offsetLeft - (strip.clientWidth - slots[i].offsetWidth) / 2, behavior: "smooth" });
       stageChar.src = `assets/img/team/${m.img}.webp`;
       stageChar.alt = m.name;
+      if (userPick) {
+        const ro = document.querySelector("#life .roster"), sticky = getComputedStyle(ro).position === "sticky";
+        const sr = stageChar.closest(".stage").getBoundingClientRect(), top = sticky ? ro.getBoundingClientRect().bottom + 8 : 84;
+        if (sr.top < top || sr.top > window.innerHeight * 0.6) window.scrollBy({ top: sr.top - top, behavior: "smooth" });
+      }
       playChar = m.img;
       updatePlay();
       stageChar.classList.remove("is-swapping");
@@ -206,7 +217,7 @@
       requestAnimationFrame(() => statsEl.querySelectorAll(".bar i").forEach((b) => { b.style.width = `${b.dataset.v}%`; }));
     };
     slots.forEach((s, i) => {
-      s.addEventListener("click", () => select(i));
+      s.addEventListener("click", () => { userPick = true; select(i); });
       s.addEventListener("keydown", (e) => {
         const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
         if (!d) return;
@@ -214,7 +225,11 @@
         select((i + d + slots.length) % slots.length, true);
       });
     });
-    TEAM.forEach((m) => { new Image().src = `assets/img/team/${m.img}.webp`; });
+    const preload = () => TEAM.forEach((m) => { new Image().src = `assets/img/team/${m.img}.webp`; });
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { preload(); io.disconnect(); } }, { rootMargin: "600px 0px" });
+      io.observe(document.getElementById("life"));
+    } else preload();
     select(0);
   }
 
