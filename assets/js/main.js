@@ -181,7 +181,7 @@
     { img: "tiaqua", name: "Nghệ nhân Tỉa Quả", cls: "Artisan · Event", quote: "Quả nào qua tay tôi cũng thành tác phẩm.",
       stats: [["Code", 70], ["Design", 90], ["Meme", 97], ["Khéo tay", 100]], skills: [["😗", "Phồng má",7,"Thổi phù một luồng gió hình nón: đẩy lùi kẻ địch và thổi ngược lựu đạn, vật ném đang bay tới"], ["🔪", "Tỉa hoa",6,"3 nhát dao tỉa liên tiếp phía trước: 2 nhát giữ chân, nhát cuối hất văng"]] },
     { img: "hb", name: "Thủ Khoa HB", cls: "Scholar · Academy", quote: "Bài nào cũng thuộc, đòn nào cũng trúng.",
-      stats: [["Code", 92], ["Design", 64], ["Meme", 80], ["Chăm học", 100]], skills: [["🖍️", "Ném phấn",6,"Búng 3 viên phấn bay thẳng, xa và nhanh"], ["📚", "Học thuộc lòng",15,"5s tập trung cao độ: mọi đòn gây thêm 25% sát thương"]] },
+      stats: [["Code", 92], ["Design", 64], ["Meme", 80], ["Chăm học", 100]], skills: [["🖍️", "Ném phấn",6,"Búng 3 viên phấn bay thẳng, xa và nhanh"], ["📚", "Học thuộc lòng",15,"4s tập trung cao độ: mọi đòn gây thêm 25% sát thương"]] },
     { img: "link", name: "Người Tuất Link", cls: "Hero · Năm Tuất", quote: "Hey, listen! Gâu gâu!",
       stats: [["Code", 70], ["Design", 76], ["Meme", 98], ["Dũng cảm", 100]], skills: [["🌀", "Chém xoáy",6.5,"Xoay kiếm một vòng, chém và hất văng mọi kẻ xung quanh"], ["🛡️", "Khiên Hylian",9,"1,2s giơ khiên: chặn mọi đòn, phản 10 sát thương (mỗi kẻ một lần)"]] },
     { img: "deadline", name: "Họa Sĩ Deadline", cls: "Artist · Bị xích vào bảng vẽ", quote: "Còn 5 phút nữa là nộp, vẽ thôi!",
@@ -189,9 +189,9 @@
     { img: "giotet", name: "Chàng Giỏ Tết", cls: "Gentleman · Tết", quote: "Áo trắng phải giữ trắng, quà Tết phải trao tận tay.",
       stats: [["Code", 74], ["Design", 72], ["Meme", 85], ["Lịch sự", 100]], skills: [["🧺", "Giỏ quà bay",6,"Quăng giỏ tre bay ra rồi quay về, trúng được 2 lần"], ["🟩", "Bánh chưng",15,"Ăn miếng bánh chưng: hồi 30 máu và nạp đầy nhiên liệu bay"]] },
     { img: "lau", name: "Vua Lẩu", cls: "Tank · Hậu cần", quote: "Đánh xong thì đi lẩu, lì xì anh bao!",
-      stats: [["Code", 68], ["Design", 60], ["Meme", 96], ["Nụ cười", 100]], skills: [["🍲", "Nồi lẩu sôi",14,"Đặt nồi lẩu 5s: kẻ địch đứng gần bị bỏng 6 máu/giây và chạy chậm"], ["🧧", "Phát lì xì",7.5,"Tung 4 phong lì xì hình quạt"]] },
+      stats: [["Code", 68], ["Design", 60], ["Meme", 96], ["Nụ cười", 100]], skills: [["🍲", "Nồi lẩu sôi",14,"Đặt nồi lẩu 5s: kẻ địch đứng gần bị bỏng 5 máu/giây và chạy chậm"], ["🧧", "Phát lì xì",7.5,"Tung 4 phong lì xì hình quạt"]] },
     { img: "quado", name: "Bé Hộp Quà", cls: "Support · Bất ngờ", quote: "Quà này cho anh nè… BÙM!",
-      stats: [["Code", 66], ["Design", 82], ["Meme", 90], ["Dễ thương", 100]], skills: [["🎁", "Hộp quà bất ngờ",6.5,"Ném hộp quà, nổ tung khi chạm người hoặc sàn"], ["🥺", "Mắt long lanh",9,"Ánh mắt long lanh làm kẻ địch xung quanh chùn tay: đẩy nhẹ và làm chậm 2s"]] },
+      stats: [["Code", 66], ["Design", 82], ["Meme", 90], ["Dễ thương", 100]], skills: [["🎁", "Hộp quà bất ngờ",6.5,"Ném hộp quà, nổ tung khi chạm người hoặc sàn"], ["🥺", "Mắt long lanh",9,"Ánh mắt long lanh làm kẻ địch xung quanh chùn tay: đẩy nhẹ và làm chậm 1,5s"]] },
   ];
   const slots = [...document.querySelectorAll(".roster .slot")];
   const stageChar = document.getElementById("stageChar");
