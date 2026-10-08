@@ -149,9 +149,7 @@
     })
     .catch(() => {});
   showLive(); setInterval(() => { if (!document.hidden) showLive(); }, 30000);
-  // the dock steps aside while the character section's own play button is on screen
-  const dock = document.querySelector(".dock");
-  if (dock && playBtn && "IntersectionObserver" in window) new IntersectionObserver((es) => dock.classList.toggle("is-tucked", es[0].isIntersecting), { threshold: 0.5 }).observe(playBtn);
+  // (the dock stays on screen everywhere, Admin included)
 
   // each character's passive in RiseOn Arena (same as arena/public/shared.js PASSIVES)
   const PASSIVE = {
