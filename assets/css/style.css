@@ -1019,3 +1019,16 @@ html { scroll-padding-bottom: 90px; }
   body { padding-bottom: 84px; }
 }
 .roster .slot span { font-size: max(.78rem, 13px); }
+
+/* phones: the three dock buttons share the bar (no overflow); Admin shrinks to its icon on narrow screens */
+@media (max-width: 599px) {
+  .dock { gap: 6px; padding: 5px; }
+  .dock-btn { flex: 1 1 0; min-width: 0; padding: 0 10px; gap: 6px; font-size: .82rem; }
+  .dock-play { flex: 1.5 1 0; min-width: 0; padding-right: 10px; }
+  .dock-txt { overflow: hidden; }
+  .dock-txt small { font-size: .66rem; overflow: hidden; text-overflow: ellipsis; }
+}
+@media (max-width: 430px) {
+  .dock-btn[href*="admin"] { flex: 0 0 44px; padding: 0; }
+  .dock-btn[href*="admin"] .dock-txt { display: none; }
+}
