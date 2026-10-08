@@ -153,6 +153,28 @@
   const dock = document.querySelector(".dock");
   if (dock && playBtn && "IntersectionObserver" in window) new IntersectionObserver((es) => dock.classList.toggle("is-tucked", es[0].isIntersecting), { threshold: 0.5 }).observe(playBtn);
 
+  // each character's passive in RiseOn Arena (same as arena/public/shared.js PASSIVES)
+  const PASSIVE = {
+    tiger: ["🐅", "Hổ dữ", "Đòn kết combo (cú đấm thứ 3) làm đối thủ choáng 0,4s"],
+    cat: ["🔍", "Bắt lỗi", "Đánh trúng người vừa dùng kỹ năng (trong 1s) gây thêm 25% sát thương"],
+    fruit: ["🥗", "Ăn uống điều độ", "Mọi nguồn hồi máu mạnh hơn 30%"],
+    trungthu: ["🌟", "Tỏa sáng", "Hạ gục ai đó: chạy nhanh hơn 20% trong 4s"],
+    studio: ["🏋️", "Chăm tập", "Đứng yên 2,5s sẽ tự chống đẩy: mỗi cái +1 tầng Cơ bắp (tối đa 5), mỗi tầng +5% sát thương và lực hất của đấm. Giữ 10s, bị trúng đòn mất 1 tầng"],
+    xoan: ["🥳", "Tiệc tùng", "Có người bị hạ gần bạn: gây thêm 10% sát thương trong 3s"],
+    courage: ["🐇", "Nhát như thỏ", "Máu dưới 30%: chạy nhanh hơn 25% và né lướt hồi nhanh gấp đôi"],
+    soi: ["🩸", "Khát máu", "Đánh trúng người dưới 40% máu khiến họ chảy máu: mất 2 máu/giây trong 3s"],
+    chidai: ["😤", "Uy quyền", "Kẻ địch đứng gần bị Run sợ: gây ít hơn 15% sát thương lên Chị Đại"],
+    tire: ["🛞", "Lốp cao su", "Bị hất văng nhẹ hơn 20%"],
+    co: ["♟️", "Tính trước nước đi", "Cứ mỗi 12s, đòn trúng đầu tiên gây thêm 50% sát thương và làm chậm đối thủ 1,5s"],
+    dmc: ["🎸", "Style", "Đánh trúng liên tục mà không bị trúng đòn: lên hạng D→C→B→A→S, mỗi hạng +4% sát thương. Bị trúng đòn thì về D"],
+    tiaqua: ["🎨", "Khéo tay", "Súng nhặt được thêm 50% đạn; ném vũ khí gây gấp đôi sát thương"],
+    hb: ["🎓", "Học nhanh", "Kỹ năng hồi nhanh hơn 15%"],
+    link: ["🧚", "Tiên trong lọ", "Mỗi round, lần đầu máu tụt dưới 25 (mà chưa bị hạ): hồi ngay 25 máu"],
+    deadline: ["⏰", "Nước đến chân", "Dưới 50% máu: kỹ năng hồi nhanh hơn 30%"],
+    giotet: ["👔", "Áo trắng tinh tươm", "Khi còn từ 85 máu trở lên, nhận ít hơn 30% sát thương"],
+    lau: ["😄", "Ăn no cười tươi", "Hạ gục ai đó: hồi 20 máu"],
+    quado: ["🐣", "Nhỏ mà có võ", "Đấm gây thêm 15% sát thương"],
+  };
   const TEAM = [
     { img: "tiger", name: "Hổ Thiền Debug", cls: "Tank · Backend", quote: "Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.",
       stats: [["Code", 92], ["Design", 40], ["Meme", 85], ["Bình tĩnh", 99]], skills: [["🐯", "Gầm hổ",8,"Sóng âm hất văng mọi kẻ xung quanh"], ["🧘", "Thiền định",14,"3s giảm 70% sát thương, không bị đẩy lùi, hồi 20 máu"]] },
@@ -229,7 +251,8 @@
       $("pQuote").textContent = `“${m.quote}”`;
       // the character's real skill set in RiseOn Arena
       $("pSkills").innerHTML = m.skills
-        .map(([icon, name, cd, desc]) => `<li><span class="sk-ic">${icon}</span><span><b>${name}</b><small>hồi ${cd}s</small><em>${desc}</em></span></li>`).join("");
+        .map(([icon, name, cd, desc]) => `<li><span class="sk-ic">${icon}</span><span><b>${name}</b><small>hồi ${cd}s</small><em>${desc}</em></span></li>`).join("") +
+        (PASSIVE[m.img] ? `<li class="passive"><span class="sk-ic">${PASSIVE[m.img][0]}</span><span><b>${PASSIVE[m.img][1]}</b><small>nội tại</small><em>${PASSIVE[m.img][2]}</em></span></li>` : "");
       statsEl.innerHTML = m.stats.map(([k, v]) =>
         `<li><span>${k}</span><div class="bar"><i data-v="${v}"></i></div><b>${v}</b></li>`).join("");
       requestAnimationFrame(() => statsEl.querySelectorAll(".bar i").forEach((b) => { b.style.width = `${b.dataset.v}%`; }));

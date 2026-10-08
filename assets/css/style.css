@@ -587,7 +587,9 @@ strong { color: var(--white); font-weight: 600; }
 .skill b { font-weight: 700; }
 .skill-set { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 8px; }
 .skill-set li { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; }
-.skill-set li:last-child { opacity: .75; }
+.skill-set li:nth-child(2) { opacity: .75; }
+.skill-set li.passive { padding-top: 8px; border-top: 1px dashed rgba(255,255,255,.14); }
+.skill-set li.passive small { color: var(--mint, #78dcb4); border: 1px solid currentColor; border-radius: 999px; padding: 1px 7px; }
 .sk-ic { font-size: 22px; line-height: 1.1; }
 .skill-set small { margin-left: 8px; font-size: .74rem; font-weight: 700; color: var(--amber); }
 .skill-set em { display: block; font-style: normal; font-size: .85rem; color: var(--muted); }
