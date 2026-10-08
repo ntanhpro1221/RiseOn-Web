@@ -998,3 +998,18 @@ h1, h2, h3 { text-wrap: balance; }
   .dock { left: 50%; right: auto; transform: translateX(-50%); bottom: calc(10px + env(safe-area-inset-bottom)); }
   body { padding-bottom: 76px; }
 }
+
+/* dock: never wraps, steps aside near the in-page play button; a full-width bar on phones */
+.dock { transition: transform .25s ease, opacity .25s ease; }
+.dock.is-tucked { opacity: 0; pointer-events: none; transform: translateY(16px); }
+.dock-txt { white-space: nowrap; }
+.dock-txt small { font-size: .72rem; opacity: 1; white-space: nowrap; }
+.dock-play { min-width: 120px; }
+html { scroll-padding-bottom: 90px; }
+@media (max-width: 599px) {
+  .dock { left: 12px; right: 12px; transform: none; justify-content: stretch; }
+  .dock.is-tucked { transform: translateY(16px); }
+  .dock-btn { flex: 1; justify-content: center; }
+  body { padding-bottom: 84px; }
+}
+.roster .slot span { font-size: max(.78rem, 13px); }

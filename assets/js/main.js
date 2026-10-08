@@ -143,11 +143,15 @@
     .then((d) => {
       const players = (d.servers || []).reduce((t, s) => t + (s.players || 0), 0);
       const live = document.getElementById("dockLive");
-      if (live) { live.textContent = players ? `${players} đang chơi` : `${(d.servers || []).length} máy chủ`; live.hidden = false; }
+      const open = (d.rooms || []).length;
+      if (live) { live.textContent = players ? `${players} đang chơi` : open ? `${open} phòng đang mở` : "Vào tạo phòng"; live.hidden = false; }
       if (dockPlay) dockPlay.title = `${(d.servers || []).length} máy chủ đang bật · ${(d.rooms || []).length} phòng`;
     })
     .catch(() => {});
   showLive(); setInterval(() => { if (!document.hidden) showLive(); }, 30000);
+  // the dock steps aside while the character section's own play button is on screen
+  const dock = document.querySelector(".dock");
+  if (dock && playBtn && "IntersectionObserver" in window) new IntersectionObserver((es) => dock.classList.toggle("is-tucked", es[0].isIntersecting), { threshold: 0.5 }).observe(playBtn);
 
   const TEAM = [
     { img: "tiger", name: "Hổ Thiền Debug", cls: "Tank · Backend", quote: "Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.",
