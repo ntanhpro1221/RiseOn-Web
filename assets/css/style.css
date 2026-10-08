@@ -1032,3 +1032,5 @@ html { scroll-padding-bottom: 90px; }
   .dock-btn[href*="admin"] { flex: 0 0 44px; padding: 0; }
   .dock-btn[href*="admin"] .dock-txt { display: none; }
 }
+/* the Arena button: just "Arena" */
+#dockLive { display: none !important; }
