@@ -176,6 +176,8 @@
       stats: [["Code", 66], ["Design", 78], ["Meme", 92], ["Nụ cười", 100]], skills: [["🚩", "Cắm cờ",15,"Cắm cờ 6s: đứng gần cờ hồi 5 máu/giây và nhận ít hơn 30% sát thương"], ["🎌", "Phất cờ",6,"Phất cờ quét một vòng, hất văng kẻ địch xung quanh"]] },
     { img: "dmc", name: "Thợ Săn Quỷ", cls: "Slayer · Gameplay", quote: "Quỷ khóc, thần sầu — bug cũng phải chạy.",
       stats: [["Code", 86], ["Design", 62], ["Meme", 91], ["Ngầu", 100]], skills: [["🗡️", "Stinger",6.5,"Lao kiếm đâm thẳng theo hướng ngắm, xuyên qua và hất văng mọi kẻ trên đường"], ["🔫", "Ebony & Ivory",8.5,"Rút song súng bắn một chùm 5 viên hình quạt"]] },
+    { img: "tiaqua", name: "Nghệ nhân Tỉa Quả", cls: "Artisan · Event", quote: "Quả nào qua tay tôi cũng thành tác phẩm.",
+      stats: [["Code", 70], ["Design", 90], ["Meme", 97], ["Khéo tay", 100]], skills: [["😗", "Phồng má",7,"Thổi phù một luồng gió hình nón: đẩy lùi kẻ địch và thổi ngược lựu đạn, vật ném đang bay tới"], ["🔪", "Tỉa hoa",6,"3 nhát dao tỉa liên tiếp phía trước: 2 nhát giữ chân, nhát cuối hất văng"]] },
   ];
   const slots = [...document.querySelectorAll(".roster .slot")];
   const stageChar = document.getElementById("stageChar");
