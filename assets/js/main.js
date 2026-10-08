@@ -129,27 +129,25 @@
     window.addEventListener("resize", update);
   }
 
-  // Character select
-  // RiseOn Arena runs on the studio Mac mini. The Mac keeps play.json updated with its current public
-  // address; office visitors arriving there are redirected by the game server to the faster LAN address.
-  let gameUrl = "http://192.168.0.77:3000/";
+  // Character select + the floating Arena / Collab / Admin buttons.
+  // Everything goes through the RiseOn lobby: it serves the game, picks the best server (or lets the player host)
+  // and knows how many people are playing right now.
+  const LOBBY = "https://riseon-lobby.ngdtuanh.workers.dev";
   let playChar = "tiger";
   const playBtn = document.getElementById("playBtn");
-  const updatePlay = () => { if (playBtn) playBtn.href = `${gameUrl}?char=${playChar}`; };
-  fetch(`play.json?t=${Date.now()}`, { cache: "no-store" })
-    .then((r) => (r.ok ? r.json() : null))
-    .then((c) => {
-      if (c && c.url) { gameUrl = c.url; updatePlay(); }
-      if (playBtn && c && c.url) {
-        const ctl = new AbortController(); setTimeout(() => ctl.abort(), 6000);
-        fetch(`${gameUrl.replace(/\/$/, "")}/health`, { cache: "no-store", signal: ctl.signal })
-          .then((r) => { if (!r.ok) throw new Error(String(r.status)); })
-          .catch(() => { playBtn.classList.add("is-offline"); playBtn.setAttribute("aria-disabled", "true"); playBtn.querySelector("svg") && (playBtn.firstChild.textContent = "Server game đang tạm nghỉ "); });
-      }
-      // Admin: the Mac's PIN-protected panel to switch the game server on/off (public link, LAN as fallback)
-      if (c && (c.admin || c.adminLan)) document.querySelectorAll("[data-admin]").forEach((a) => { a.href = c.admin || c.adminLan; });
+  const updatePlay = () => { if (playBtn) playBtn.href = `${LOBBY}/?char=${playChar}`; };
+  updatePlay();
+  const dockPlay = document.getElementById("dockPlay");
+  const showLive = () => fetch(`${LOBBY}/lobby`, { cache: "no-store" })
+    .then((r) => r.json())
+    .then((d) => {
+      const players = (d.servers || []).reduce((t, s) => t + (s.players || 0), 0);
+      const live = document.getElementById("dockLive");
+      if (live) { live.textContent = players ? `${players} đang chơi` : `${(d.servers || []).length} máy chủ`; live.hidden = false; }
+      if (dockPlay) dockPlay.title = `${(d.servers || []).length} máy chủ đang bật · ${(d.rooms || []).length} phòng`;
     })
     .catch(() => {});
+  showLive(); setInterval(() => { if (!document.hidden) showLive(); }, 30000);
 
   const TEAM = [
     { img: "tiger", name: "Hổ Thiền Debug", cls: "Tank · Backend", quote: "Bug đến thì ngồi thiền, bug đi thì ngồi tiếp.",

@@ -977,3 +977,24 @@ h1, h2, h3 { text-wrap: balance; }
 /* the play button when the game server is off: no arrow */
 .play-btn.is-offline svg { display: none; }
 #life .roster { margin-bottom: 18px; }
+
+
+/* ===== floating dock: Arena · Collab · Admin ===== */
+.dock { position: fixed; z-index: 60; right: calc(16px + env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom));
+  display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: 999px; background: rgba(17,17,17,.82); border: 1px solid var(--line);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+.dock-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; color: var(--text);
+  font-weight: 800; font-size: .9rem; text-decoration: none; background: #232021; border: 1px solid var(--line); transition: transform .15s, border-color .15s; }
+.dock-btn:hover { transform: translateY(-1px); border-color: rgba(246,173,19,.6); }
+.dock-btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.dock-btn svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+.dock-play { background: var(--grad); color: #231f20; border: 0; padding-right: 18px; }
+.dock-play svg { fill: #231f20; }
+.dock-txt { display: flex; flex-direction: column; line-height: 1.1; }
+.dock-txt small { font-size: .66rem; font-weight: 700; opacity: .8; }
+.dock-icon { width: 44px; padding: 0; justify-content: center; }
+.dock-icon svg { fill: none; }
+@media (max-width: 599px) {
+  .dock { left: 50%; right: auto; transform: translateX(-50%); bottom: calc(10px + env(safe-area-inset-bottom)); }
+  body { padding-bottom: 76px; }
+}
