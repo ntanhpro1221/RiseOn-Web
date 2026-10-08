@@ -604,11 +604,11 @@ strong { color: var(--white); font-weight: 600; }
   transition: border-color .2s ease, transform .2s ease, color .2s ease;
 }
 .slot img {
-  position: absolute; left: 50%; bottom: 30px; height: 112px; width: auto; max-width: 120%;
+  position: absolute; left: 50%; bottom: 38px; height: 106px; width: auto; max-width: 120%;
   transform: translateX(-50%); object-fit: contain; filter: grayscale(.7) brightness(.8);
   transition: filter .25s ease, transform .25s ease;
 }
-.slot span { position: relative; z-index: 1; white-space: nowrap; }
+.slot span { position: relative; z-index: 1; max-width: 100%; text-align: center; font-size: .76rem; line-height: 1.15; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .slot:hover { transform: translateY(-3px); color: var(--text); }
 .slot:hover img { filter: none; }
 .slot.is-active {
