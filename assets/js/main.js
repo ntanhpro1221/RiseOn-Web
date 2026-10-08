@@ -142,7 +142,8 @@
       if (c && c.url) { gameUrl = c.url; updatePlay(); }
       if (playBtn && c && c.url) {
         const ctl = new AbortController(); setTimeout(() => ctl.abort(), 6000);
-        fetch(`${gameUrl.replace(/\/$/, "")}/health`, { mode: "no-cors", cache: "no-store", signal: ctl.signal })
+        fetch(`${gameUrl.replace(/\/$/, "")}/health`, { cache: "no-store", signal: ctl.signal })
+          .then((r) => { if (!r.ok) throw new Error(String(r.status)); })
           .catch(() => { playBtn.classList.add("is-offline"); playBtn.setAttribute("aria-disabled", "true"); playBtn.querySelector("svg") && (playBtn.firstChild.textContent = "Server game đang tạm nghỉ "); });
       }
       // Admin: the Mac's PIN-protected panel to switch the game server on/off (public link, LAN as fallback)
@@ -198,8 +199,9 @@
       stageChar.alt = m.name;
       if (userPick) {
         const ro = document.querySelector("#life .roster"), sticky = getComputedStyle(ro).position === "sticky";
-        const sr = stageChar.closest(".stage").getBoundingClientRect(), top = sticky ? ro.getBoundingClientRect().bottom + 8 : 84;
-        if (sr.top < top || sr.top > window.innerHeight * 0.6) window.scrollBy({ top: sr.top - top, behavior: "smooth" });
+        const sr = stageChar.closest(".stage").getBoundingClientRect();
+        if (sticky ? sr.top < ro.getBoundingClientRect().bottom || sr.top > window.innerHeight * 0.6 : sr.top > window.innerHeight * 0.7)
+          window.scrollBy({ top: sr.top - (sticky ? ro.getBoundingClientRect().bottom + 8 : ro.getBoundingClientRect().top - 12), behavior: "smooth" });
       }
       playChar = m.img;
       updatePlay();
